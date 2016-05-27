@@ -1,0 +1,16 @@
+PODS:
+  - TCCollections (0.1.0):
+    - TCCollections/CoreData (= 0.1.0)
+  - TCCollections/Core (0.1.0):
+    - TCCollections/Support
+  - TCCollections/CoreData (0.1.0):
+    - TCCollections/Core
+  - TCCollections/Support (0.1.0)
+
+DEPENDENCIES:
+  - TCCollections
+
+SPEC CHECKSUMS:
+  TCCollections: 3bee1eed9da05524b63ee32480df8a78133dd39e
+
+COCOAPODS: 0.39.0

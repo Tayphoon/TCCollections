@@ -1,0 +1,11 @@
+//
+//  TCCollections-Prefix.pch
+//  TCCollections
+//
+//  Created by Tayphoon on 25.03.16.
+//  Copyright © 2016 Tayphoon. All rights reserved.
+//
+
+#ifdef __OBJC__
+#import <UIKit/UIKit.h>
+#endif
