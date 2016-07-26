@@ -6,6 +6,8 @@
 //  Copyright (c) 2014 Tayphoon. All rights reserved.
 //
 
+#import <OALayoutAnchor/OALayoutAnchor.h>
+
 #import "TCTableBaseController.h"
 #import "TCCollectionsConstants.h"
 
@@ -13,6 +15,7 @@
     UITableView * _tableView;
     BOOL _isDealocProcessing;
     UIEdgeInsets _tableInsets;
+    NSLayoutConstraint * _activityIndicatorTopConstraint;
 }
 
 @property (nonatomic, strong) UIActivityIndicatorView * activityIndicator;
@@ -32,39 +35,31 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    if(!self.tableView.superview) {
-        [self.view addSubview:self.tableView];
-    }
-    
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
 }
 
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-}
-
-- (void)viewDidDisappear:(BOOL)animated {
-    [super viewDidDisappear:animated];
-}
-
 - (UITableView*)tableView {
     if(!_tableView && !_isDealocProcessing && self.isViewLoaded) {
-        _tableView = [[UITableView alloc] initWithFrame:self.view.bounds];
+        _tableView = [[UITableView alloc] init];
         _tableView.backgroundColor = [UIColor clearColor];
-        _tableView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
+        _tableView.translatesAutoresizingMaskIntoConstraints = NO;
+        
         if([_tableView respondsToSelector:@selector(setSeparatorInset:)]) {
             [_tableView setSeparatorInset:UIEdgeInsetsZero];
         }
         if([_tableView respondsToSelector:@selector(setLayoutMargins:)]) {
             [_tableView setLayoutMargins:UIEdgeInsetsZero];
         }
+        
+        [self.view addSubview:_tableView];
+        [self configureTableLayoutConstraints];
     }
     return _tableView;
 }
 
 - (UILabel*)noDataLabel {
-    if(!_noDataLabel) {
+    if(!_noDataLabel && self.isViewLoaded) {
         _noDataLabel = [[UILabel alloc] init];
         [_noDataLabel setFont:[UIFont systemFontOfSize:18.0f]];
         [_noDataLabel setTextColor:[UIColor lightGrayColor]];
@@ -72,16 +67,16 @@
         _noDataLabel.backgroundColor = [UIColor clearColor];
         _noDataLabel.numberOfLines = 0;
         _noDataLabel.lineBreakMode = NSLineBreakByWordWrapping;
-        _noDataLabel.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
+        _noDataLabel.translatesAutoresizingMaskIntoConstraints = NO;
         _noDataLabel.hidden = YES;
         
         if (self.tableView) {
             [self.view insertSubview:_noDataLabel belowSubview:self.tableView];
-            _noDataLabel.frame = self.tableView.frame;
+            [self configureNoDataLayoutConstraintsForView:self.tableView];
         }
         else {
             [self.view addSubview:_noDataLabel];
-            _noDataLabel.frame = self.view.frame;
+            [self configureNoDataLayoutConstraintsForView:self.view];
         }
     }
     
@@ -295,35 +290,28 @@
 }
 
 - (BOOL)isActivityIndicatorShown {
-    return _activityIndicator && _activityIndicator.superview;
+    return _activityIndicator && !_activityIndicator.isHidden;
 }
 
 - (void)showActivityIndicatorAnimated:(BOOL)animated completion:(void (^)(void))completion {
-    if (self.activityIndicator.isHidden) {
+    if (!self.isActivityIndicatorShown) {
         [self.activityIndicator startAnimating];
         
         CGFloat indicatorHeight = self.activityIndicator.frame.size.height;
-        self.activityIndicator.frame = CGRectMake(self.tableView.frame.origin.x,
-                                                  self.tableView.frame.origin.y - indicatorHeight,
-                                                  self.tableView.frame.size.width,
-                                                  self.activityIndicator.frame.size.height);
-        [self.tableView.superview insertSubview:self.activityIndicator aboveSubview:self.tableView];
         
-        self.activityIndicator.autoresizingMask = UIViewAutoresizingFlexibleWidth;
         _tableInsets = self.tableView.contentInset;
         CGPoint contentOffset = self.tableView.contentOffset;
         UIEdgeInsets contentInsets = self.tableView.contentInset;
         contentInsets.top = indicatorHeight;
         contentOffset.y -= indicatorHeight;
         
+        _activityIndicatorTopConstraint.constant = 0.0f;
+        
         [UIView animateWithDuration:animated ? 0.3 : 0.0
                               delay:0.0
                             options:UIViewAnimationOptionBeginFromCurrentState | UIViewAnimationOptionCurveEaseIn
                          animations:^{
-                             self.activityIndicator.frame = CGRectMake(self.tableView.frame.origin.x,
-                                                                       self.tableView.frame.origin.y,
-                                                                       self.tableView.frame.size.width,
-                                                                       self.activityIndicator.frame.size.height);
+                             [self.activityIndicator layoutIfNeeded];
 
                              self.tableView.contentInset = contentInsets;
                              [self.tableView setContentOffset:contentOffset animated:NO];
@@ -338,27 +326,23 @@
 
 - (void)hideActivityIndicatorAnimated:(BOOL)animated completion:(void (^)(void))completion {
     if (self.isActivityIndicatorShown) {
-        CGFloat indicatorHeight = self.activityIndicator.frame.size.height;
-
         void (^completionBlock)(BOOL finished) = ^(BOOL finished)
         {
             self.tableView.contentInset = _tableInsets;
             [self.activityIndicator stopAnimating];
-            [self.activityIndicator removeFromSuperview];
             if (finished && completion) {
                 completion();
             }
         };
         
+        _activityIndicatorTopConstraint.constant = -30.0f;
+
        if (animated) {
             [UIView animateWithDuration:0.3
                                   delay:0.0
                                 options:UIViewAnimationOptionBeginFromCurrentState | UIViewAnimationOptionCurveEaseOut
                              animations:^{
-                                 self.activityIndicator.frame = CGRectMake(self.tableView.frame.origin.x,
-                                                                           self.tableView.frame.origin.y - indicatorHeight,
-                                                                           self.tableView.frame.size.width,
-                                                                           self.activityIndicator.frame.size.height);
+                                 [self.activityIndicator layoutIfNeeded];
                                  
                                  self.tableView.contentInset = _tableInsets;
                              }
@@ -372,15 +356,41 @@
     }
 }
 
+#pragma mark - AutoLayout methods
+
+- (void)configureTableLayoutConstraints {
+    [_tableView.topAnchor constraintEqualToAnchor:self.view.topAnchor].active = YES;
+    [_tableView.bottomAnchor constraintEqualToAnchor:self.view.bottomAnchor].active = YES;
+    [_tableView.leadingAnchor constraintEqualToAnchor:self.view.leadingAnchor].active = YES;
+    [_tableView.trailingAnchor constraintEqualToAnchor:self.view.trailingAnchor].active = YES;
+}
+
+- (void)configureNoDataLayoutConstraintsForView:(UIView*)superView {
+    [_noDataLabel.topAnchor constraintEqualToAnchor:superView.topAnchor].active = YES;
+    [_noDataLabel.bottomAnchor constraintEqualToAnchor:superView.bottomAnchor].active = YES;
+    [_noDataLabel.leadingAnchor constraintEqualToAnchor:superView.leadingAnchor].active = YES;
+    [_noDataLabel.trailingAnchor constraintEqualToAnchor:superView.trailingAnchor].active = YES;
+}
+
+- (void)configureActivityIndicatorLayoutConstraints {
+    _activityIndicatorTopConstraint = [_activityIndicator.topAnchor constraintEqualToAnchor:self.tableView.topAnchor constant:-30];
+    _activityIndicatorTopConstraint.active = YES;
+    [_activityIndicator.leadingAnchor constraintEqualToAnchor:self.tableView.leadingAnchor].active = YES;
+    [_activityIndicator.trailingAnchor constraintEqualToAnchor:self.tableView.trailingAnchor].active = YES;
+    [_activityIndicator.heightAnchor constraintEqualToConstant:30.0f].active = YES;
+}
+
 #pragma mark - Private methods
 
 - (UIActivityIndicatorView*)activityIndicator {
-    if (!_activityIndicator) {
+    if (!_activityIndicator && self.isViewLoaded) {
         _activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
-        _activityIndicator.frame = CGRectMake(0.0f, -30, self.view.frame.size.width, 30);
         _activityIndicator.hidesWhenStopped = YES;
         _activityIndicator.hidden = YES;
         _activityIndicator.backgroundColor = [UIColor whiteColor];
+        _activityIndicator.translatesAutoresizingMaskIntoConstraints = NO;
+        [self.tableView.superview insertSubview:_activityIndicator aboveSubview:self.tableView];
+        [self configureActivityIndicatorLayoutConstraints];
     }
     
     return _activityIndicator;
