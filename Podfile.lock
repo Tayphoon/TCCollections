@@ -1,0 +1,12 @@
+PODS:
+  - OALayoutAnchor (0.2.0)
+
+DEPENDENCIES:
+  - OALayoutAnchor (~> 0.2.0)
+
+SPEC CHECKSUMS:
+  OALayoutAnchor: 27a15a06ebfd3bc07de527f6cd4a5a714c47226d
+
+PODFILE CHECKSUM: 7bc68dfba3ffd325df3baaad1d50c1e98a0470f4
+
+COCOAPODS: 1.0.0

@@ -6,6 +6,8 @@
 //  Copyright © 2016 Proarise. All rights reserved.
 //
 
+#import <OALayoutAnchor/OALayoutAnchor.h>
+
 #import "TCTitledCollectionController.h"
 #import "TCCollectionsConstants.h"
 
@@ -21,24 +23,12 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    if(!self.collectionView.superview) {
-        [self.view addSubview:self.collectionView];
-    }
-    
     self.collectionView.delegate = self;
     self.collectionView.dataSource = self;
 }
 
-- (void)viewWillLayoutSubviews {
-    [super viewWillLayoutSubviews];
-    
-    if (_collectionView) {
-        _collectionView.frame = self.view.bounds;
-    }
-}
-
 - (TCTitledCollectionView*)collectionView {
-    if (!_collectionView) {
+    if (!_collectionView && self.isViewLoaded) {
         UICollectionViewFlowLayout * layout = [[UICollectionViewFlowLayout alloc] init];
         layout.scrollDirection = UICollectionViewScrollDirectionVertical;
         layout.minimumLineSpacing = 0.0f;
@@ -46,37 +36,41 @@
         layout.sectionInset = UIEdgeInsetsZero;
         
         _collectionView = [[TCTitledCollectionView alloc] init];
-        _collectionView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
         _collectionView.collectionViewLayout = layout;
         _collectionView.collectionView.backgroundColor = [UIColor clearColor];
+        _collectionView.translatesAutoresizingMaskIntoConstraints = NO;
         
         UICollectionViewFlowLayout * titleLayout = [[UICollectionViewFlowLayout alloc] init];
         titleLayout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
         titleLayout.sectionInset = UIEdgeInsetsMake(0, 375 / 2, 0, 375 / 2);
         _collectionView.titlesCollectionView.collectionViewLayout = titleLayout;
+        
+        [self.view addSubview:_collectionView];
+        [self configureCollectionViewLayoutConstraints];
     }
+    
     return _collectionView;
 }
 
 - (UILabel*)noDataLabel {
-    if(!_noDataLabel) {
+    if(!_noDataLabel && self.isViewLoaded) {
         _noDataLabel = [[UILabel alloc] init];
-        [_noDataLabel setFont:[UIFont systemFontOfSize:15]];
-        [_noDataLabel setTextColor:[UIColor blackColor]];
+        [_noDataLabel setFont:[UIFont systemFontOfSize:18.0f]];
+        [_noDataLabel setTextColor:[UIColor lightGrayColor]];
         _noDataLabel.textAlignment = NSTextAlignmentCenter;
         _noDataLabel.backgroundColor = [UIColor clearColor];
         _noDataLabel.numberOfLines = 0;
         _noDataLabel.lineBreakMode = NSLineBreakByWordWrapping;
-        _noDataLabel.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
+        _noDataLabel.translatesAutoresizingMaskIntoConstraints = NO;
         _noDataLabel.hidden = YES;
         
         if (self.collectionView) {
             [self.view insertSubview:_noDataLabel belowSubview:self.collectionView];
-            _noDataLabel.frame = self.collectionView.frame;
+            [self configureNoDataLayoutConstraintsForView:self.collectionView];
         }
         else {
             [self.view addSubview:_noDataLabel];
-            _noDataLabel.frame = self.view.frame;
+            [self configureNoDataLayoutConstraintsForView:self.view];
         }
     }
     
@@ -265,20 +259,12 @@
 }
 
 - (BOOL)isActivityIndicatorShown {
-    return _activityIndicator && _activityIndicator.superview;
+    return _activityIndicator && !_activityIndicator.isHidden;
 }
 
 - (void)showActivityIndicatorAnimated:(BOOL)animated completion:(void (^)(void))completion {
-    if (self.activityIndicator.isHidden) {
+    if (!self.isActivityIndicatorShown) {
         [self.activityIndicator startAnimating];
-        
-        [self.collectionView.superview insertSubview:self.activityIndicator aboveSubview:self.collectionView];
-        
-        self.activityIndicator.autoresizingMask = UIViewAutoresizingFlexibleWidth;
-        self.activityIndicator.frame = CGRectMake(self.collectionView.frame.origin.x,
-                                                  self.collectionView.frame.origin.y,
-                                                  self.collectionView.frame.size.width,
-                                                  self.collectionView.frame.size.height);
         
         if (completion) {
             completion();
@@ -289,11 +275,34 @@
 - (void)hideActivityIndicatorAnimated:(BOOL)animated completion:(void (^)(void))completion {
     if (self.isActivityIndicatorShown) {
         [self.activityIndicator stopAnimating];
-        [self.activityIndicator removeFromSuperview];
+
         if (completion) {
             completion();
         }
     }
+}
+
+#pragma mark - AutoLayout methods
+
+- (void)configureCollectionViewLayoutConstraints {
+    [_collectionView.topAnchor constraintEqualToAnchor:self.view.topAnchor].active = YES;
+    [_collectionView.bottomAnchor constraintEqualToAnchor:self.view.bottomAnchor].active = YES;
+    [_collectionView.leadingAnchor constraintEqualToAnchor:self.view.leadingAnchor].active = YES;
+    [_collectionView.trailingAnchor constraintEqualToAnchor:self.view.trailingAnchor].active = YES;
+}
+
+- (void)configureNoDataLayoutConstraintsForView:(UIView*)superView {
+    [_noDataLabel.topAnchor constraintEqualToAnchor:superView.topAnchor].active = YES;
+    [_noDataLabel.bottomAnchor constraintEqualToAnchor:superView.bottomAnchor].active = YES;
+    [_noDataLabel.leadingAnchor constraintEqualToAnchor:superView.leadingAnchor].active = YES;
+    [_noDataLabel.trailingAnchor constraintEqualToAnchor:superView.trailingAnchor].active = YES;
+}
+
+- (void)configureActivityIndicatorLayoutConstraints {
+    [_activityIndicator.topAnchor constraintEqualToAnchor:self.collectionView.topAnchor].active = YES;
+    [_activityIndicator.leadingAnchor constraintEqualToAnchor:self.collectionView.leadingAnchor].active = YES;
+    [_activityIndicator.trailingAnchor constraintEqualToAnchor:self.collectionView.trailingAnchor].active = YES;
+    [_activityIndicator.heightAnchor constraintEqualToConstant:30.0f].active = YES;
 }
 
 #pragma mark - Private methods
@@ -318,10 +327,12 @@
 - (UIActivityIndicatorView*)activityIndicator {
     if (!_activityIndicator) {
         _activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
-        _activityIndicator.frame = CGRectMake(0.0f, -30, self.view.frame.size.width, 30);
         _activityIndicator.hidesWhenStopped = YES;
         _activityIndicator.hidden = YES;
-        _activityIndicator.backgroundColor = [UIColor clearColor];
+        _activityIndicator.backgroundColor = [UIColor whiteColor];
+        _activityIndicator.translatesAutoresizingMaskIntoConstraints = NO;
+        [self.collectionView.superview insertSubview:_activityIndicator aboveSubview:self.collectionView];
+        [self configureActivityIndicatorLayoutConstraints];
     }
     
     return _activityIndicator;

@@ -6,6 +6,8 @@
 //  Copyright © 2015 Tayphoon. All rights reserved.
 //
 
+#import <OALayoutAnchor/OALayoutAnchor.h>
+
 #import "TCTableBaseView.h"
 
 @implementation TCTableBaseView
@@ -18,6 +20,7 @@
         _tableView = [[UITableView alloc] init];
         _tableView.backgroundColor = [UIColor clearColor];
         _tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
+        _tableView.translatesAutoresizingMaskIntoConstraints = NO;
         if([_tableView respondsToSelector:@selector(setSeparatorInset:)]) {
             [_tableView setSeparatorInset:UIEdgeInsetsZero];
         }

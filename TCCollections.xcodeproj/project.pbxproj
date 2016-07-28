@@ -23,6 +23,7 @@
 		733757741CA5894500FF4F03 /* TCTableManagedModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 733757651CA5894500FF4F03 /* TCTableManagedModel.m */; };
 		733757781CA589E200FF4F03 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 733757771CA589E200FF4F03 /* Foundation.framework */; };
 		7337577A1CA589EF00FF4F03 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 733757791CA589EF00FF4F03 /* UIKit.framework */; };
+		D6FD007B19069E3631FB0922 /* libPods-TCCollections.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0FEF50551282EF6BFC7BA72B /* libPods-TCCollections.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -39,6 +40,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		0FEF50551282EF6BFC7BA72B /* libPods-TCCollections.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-TCCollections.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7306FA471CA6F92700D67444 /* TCCollectionsConstants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = TCCollectionsConstants.h; path = Core/TCCollectionsConstants.h; sourceTree = "<group>"; };
 		733757231CA5888000FF4F03 /* libTCCollections.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libTCCollections.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		733757261CA5888000FF4F03 /* TCCollections.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TCCollections.h; sourceTree = "<group>"; };
@@ -85,6 +87,8 @@
 		7394B3881D4A312C001309AE /* TCTableViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCTableViewModel.h; sourceTree = "<group>"; };
 		7394B3891D4A336B001309AE /* TCCollectionViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCCollectionViewModel.h; sourceTree = "<group>"; };
 		73EA9A081CA7BFF8002C1D6A /* TCSectionHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCSectionHeaderView.h; sourceTree = "<group>"; };
+		9078595800ECA69BA2D33253 /* Pods-TCCollections.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TCCollections.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TCCollections/Pods-TCCollections.debug.xcconfig"; sourceTree = "<group>"; };
+		C96ED412C5845A407D74938F /* Pods-TCCollections.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TCCollections.release.xcconfig"; path = "Pods/Target Support Files/Pods-TCCollections/Pods-TCCollections.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,12 +98,22 @@
 			files = (
 				7337577A1CA589EF00FF4F03 /* UIKit.framework in Frameworks */,
 				733757781CA589E200FF4F03 /* Foundation.framework in Frameworks */,
+				D6FD007B19069E3631FB0922 /* libPods-TCCollections.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5E8ABE0C4022D65EFBF3616B /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				9078595800ECA69BA2D33253 /* Pods-TCCollections.debug.xcconfig */,
+				C96ED412C5845A407D74938F /* Pods-TCCollections.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		7337571A1CA5888000FF4F03 = {
 			isa = PBXGroup;
 			children = (
@@ -107,6 +121,7 @@
 				733757251CA5888000FF4F03 /* TCCollections */,
 				7337577B1CA589F900FF4F03 /* Frameworks */,
 				733757241CA5888000FF4F03 /* Products */,
+				5E8ABE0C4022D65EFBF3616B /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -330,6 +345,7 @@
 			children = (
 				733757791CA589EF00FF4F03 /* UIKit.framework */,
 				733757771CA589E200FF4F03 /* Foundation.framework */,
+				0FEF50551282EF6BFC7BA72B /* libPods-TCCollections.a */,
 			);
 			name = Frameworks;
 			path = TCCollections;
@@ -352,9 +368,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 7337572C1CA5888000FF4F03 /* Build configuration list for PBXNativeTarget "TCCollections" */;
 			buildPhases = (
+				1612D04CFC7238A83B1A6CA6 /* 📦 Check Pods Manifest.lock */,
 				7337571F1CA5888000FF4F03 /* Sources */,
 				733757201CA5888000FF4F03 /* Frameworks */,
 				733757211CA5888000FF4F03 /* CopyFiles */,
+				5B45856C1F252E17746C8238 /* 📦 Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -395,6 +413,39 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		1612D04CFC7238A83B1A6CA6 /* 📦 Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		5B45856C1F252E17746C8238 /* 📦 Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TCCollections/Pods-TCCollections-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		7337571F1CA5888000FF4F03 /* Sources */ = {
@@ -504,11 +555,12 @@
 		};
 		7337572D1CA5888000FF4F03 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9078595800ECA69BA2D33253 /* Pods-TCCollections.debug.xcconfig */;
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TCCollections/TCCollections-Prefix.pch";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				OTHER_LDFLAGS = "-ObjC";
+				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 			};
@@ -516,11 +568,12 @@
 		};
 		7337572E1CA5888000FF4F03 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C96ED412C5845A407D74938F /* Pods-TCCollections.release.xcconfig */;
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TCCollections/TCCollections-Prefix.pch";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				OTHER_LDFLAGS = "-ObjC";
+				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 			};
