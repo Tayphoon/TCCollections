@@ -8,25 +8,27 @@
 
 #import "TCCollectionModel.h"
 
-@protocol TCTitledCollectionModelDelegate <TCCollectionModelDelegate>
+@protocol TCTitledCollectionModel;
+
+@protocol TCTitledCollectionModelDelegate <TCCollectionViewModelDelegate>
 
 @optional
 
-- (void)modelWillChangeContent:(id<TCCollectionModel>)model onPage:(NSInteger)pageIndex;
+- (void)modelWillChangeContent:(id<TCTitledCollectionModel>)model onPage:(NSInteger)pageIndex;
 
-- (void)model:(id<TCCollectionModel>)model didChangePageAtIndex:(NSUInteger)pageIndex forChangeType:(NSUInteger)type;
+- (void)model:(id<TCTitledCollectionModel>)model didChangePageAtIndex:(NSUInteger)pageIndex forChangeType:(NSUInteger)type;
 
-- (void)model:(id<TCCollectionModel>)model didChangeSectionAtIndex:(NSUInteger)sectionIndex onPage:(NSInteger)pageIndex forChangeType:(NSUInteger)type;
+- (void)model:(id<TCTitledCollectionModel>)model didChangeSectionAtIndex:(NSUInteger)sectionIndex onPage:(NSInteger)pageIndex forChangeType:(NSUInteger)type;
 
-- (void)model:(id<TCCollectionModel>)model didChangeObject:(id)anObject atIndexPath:(NSIndexPath *)indexPath forChangeType:(NSUInteger)type newIndexPath:(NSIndexPath *)newIndexPath onPage:(NSInteger)pageIndex;
+- (void)model:(id<TCTitledCollectionModel>)model didChangeObject:(id)anObject atIndexPath:(NSIndexPath *)indexPath forChangeType:(NSUInteger)type newIndexPath:(NSIndexPath *)newIndexPath onPage:(NSInteger)pageIndex;
 
-- (void)modelDidChangeContent:(id<TCCollectionModel>)model onPage:(NSInteger)pageIndex;
+- (void)modelDidChangeContent:(id<TCTitledCollectionModel>)model onPage:(NSInteger)pageIndex;
 
-- (void)modelDidChanged:(id<TCCollectionModel>)model onPage:(NSInteger)pageIndex;
+- (void)modelDidChanged:(id<TCTitledCollectionModel>)model onPage:(NSInteger)pageIndex;
 
 @end
 
-@protocol TCTitledCollectionModel <TCCollectionModel>
+@protocol TCTitledCollectionModel <TCCollectionViewModel>
 
 @property (nonatomic, weak) id<TCTitledCollectionModelDelegate> delegate;
 

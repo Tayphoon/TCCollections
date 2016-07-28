@@ -1,5 +1,5 @@
 //
-//  TCTableBaseController.h
+//  TCTableViewController.h
 //  Tayphoon
 //
 //  Created by Tayphoon on 20.11.14.
@@ -7,16 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "TCTableModel.h"
+#import "TCTableViewModel.h"
 
-@interface TCTableBaseController : UIViewController<UITableViewDataSource, UITableViewDelegate, TCTableModelDelegate>
+@interface TCTableViewController : UIViewController<UITableViewDataSource, UITableViewDelegate, TCTableViewModelDelegate>
 
 @property (nonatomic, readonly) UITableView * tableView;
 @property (nonatomic, strong) UILabel * noDataLabel;
-@property (nonatomic, strong) id<TCTableModel> model;
+@property (nonatomic, strong) id<TCTableViewModel> model;
 @property (nonatomic, readonly) BOOL isActivityIndicatorShown;
-
-- (void)reloadDataWithCompletion:(void (^)(NSError *error))completion;
 
 - (void)scrollToBottomAnimated:(BOOL)animated delay:(CGFloat)delay;
 - (void)scrollToTopAnimated:(BOOL)animated delay:(CGFloat)delay;

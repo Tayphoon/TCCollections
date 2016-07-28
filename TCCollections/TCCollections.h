@@ -14,7 +14,7 @@
 #import "TCTitledCollectionModel.h"
 #import "UICollectionView+Updates.h"
 
-#import "TCTableBaseController.h"
+#import "TCTableViewController.h"
 #import "TCTableModel+Subclass.h"
 #import "TCTableViewCell.h"
 #import "TCTableBaseView.h"

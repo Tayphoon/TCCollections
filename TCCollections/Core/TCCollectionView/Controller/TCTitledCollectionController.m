@@ -89,33 +89,6 @@
     _model.delegate = self;
 }
 
-- (void)reloadDataWithCompletion:(void (^)(NSError *error))completion {
-    void (^completionBlock)(NSError *error) = ^(NSError *error) {
-        if(!error) {
-            [self.collectionView.titlesCollectionView reloadData];
-            
-            if ([self.model numberOfTitles] > 0) {
-                [self reloadDataOnPage:0];
-                
-                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                    [self.collectionView selectPageAtIndex:0
-                                                  animated:NO];
-                });
-            }
-        }
-        if (completion) {
-            completion(error);
-        }
-    };
-    
-    if(self.model) {
-        [self.model updateModelWithCompletion:completionBlock];
-    }
-    else {
-        completionBlock(nil);
-    }
-}
-
 - (void)collectionViewDidScrollToBottom:(UICollectionView*)collectionView {
     
 }
@@ -204,24 +177,24 @@
     }
 }
 
-#pragma mark - TCCollectionModel Delegate
+#pragma mark - TCTitledCollectionModel Delegate
 
-- (void)modelWillChangeContent:(id<TCCollectionModel>)model {
+- (void)modelWillChangeContent:(id<TCTitledCollectionModel>)model {
     [self.collectionView beginUpdates];
     [self.collectionView beginUpdatesOnPage:self.collectionView.selectedPage];
 }
 
-- (void)modelDidChangeContent:(id<TCCollectionModel>)model {
+- (void)modelDidChangeContent:(id<TCTitledCollectionModel>)model {
     [self updateNoDataLabelVisibility];
     [self.collectionView endUpdatesOnPage:self.collectionView.selectedPage];
     [self.collectionView endUpdates];
 }
 
-- (void)model:(id<TCCollectionModel>)model didChangePageAtIndex:(NSUInteger)pageIndex forChangeType:(NSUInteger)type {
+- (void)model:(id<TCTitledCollectionModel>)model didChangePageAtIndex:(NSUInteger)pageIndex forChangeType:(NSUInteger)type {
     [self.collectionView insertPages:[NSIndexSet indexSetWithIndex:pageIndex] animated:YES];
 }
 
-- (void)model:(id<TCCollectionModel>)model didChangeSectionAtIndex:(NSUInteger)sectionIndex onPage:(NSInteger)pageIndex forChangeType:(NSUInteger)type  {
+- (void)model:(id<TCTitledCollectionModel>)model didChangeSectionAtIndex:(NSUInteger)sectionIndex onPage:(NSInteger)pageIndex forChangeType:(NSUInteger)type  {
     switch(type) {
         case TCCollectionsChangeInsert:
             [self.collectionView insertSections:[NSIndexSet indexSetWithIndex:sectionIndex]
@@ -242,7 +215,7 @@
     }
 }
 
-- (void)model:(id<TCCollectionModel>)model didChangeObject:(id)anObject atIndexPath:(NSIndexPath *)indexPath forChangeType:(NSUInteger)type newIndexPath:(NSIndexPath *)newIndexPath onPage:(NSInteger)pageIndex {
+- (void)model:(id<TCTitledCollectionModel>)model didChangeObject:(id)anObject atIndexPath:(NSIndexPath *)indexPath forChangeType:(NSUInteger)type newIndexPath:(NSIndexPath *)newIndexPath onPage:(NSInteger)pageIndex {
     switch(type) {
         case TCCollectionsChangeInsert:
             [self.collectionView insertItemsAtIndexPaths:[NSArray arrayWithObject:newIndexPath]
@@ -280,7 +253,7 @@
     }
 }
 
-- (void)modelDidChanged:(id<TCCollectionModel>)model {
+- (void)modelDidChanged:(id<TCTitledCollectionModel>)model {
     [self updateNoDataLabelVisibility];
     [self.collectionView reloadData];
 }

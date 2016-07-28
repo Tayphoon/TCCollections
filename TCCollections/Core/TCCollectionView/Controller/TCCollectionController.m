@@ -81,28 +81,10 @@
     return _noDataLabel;
 }
 
-- (void)setModel:(id<TCCollectionModel>)model {
+- (void)setModel:(id<TCCollectionViewModel>)model {
     _model.delegate = nil;
     _model = model;
     _model.delegate = self;
-}
-
-- (void)reloadDataWithCompletion:(void (^)(NSError *error))completion {
-    void (^completionBlock)(NSError *error) = ^(NSError *error) {
-        if(!error) {
-            [self.collectionView reloadData];
-        }
-        if (completion) {
-            completion(error);
-        }
-    };
-    
-    if(self.model) {
-        [self.model updateModelWithCompletion:completionBlock];
-    }
-    else {
-        completionBlock(nil);
-    }
 }
 
 - (void)collectionViewDidScrollToBottom:(UICollectionView*)collectionView {
@@ -157,13 +139,13 @@
     }
 }
 
-#pragma mark - TCCollectionModel Delegate
+#pragma mark - TCCollectionViewModel Delegate
 
-- (void)modelWillChangeContent:(id<TCCollectionModel>)model {
+- (void)modelWillChangeContent:(id<TCCollectionViewModel>)model {
     [self.collectionView beginUpdates];
 }
 
-- (void)model:(id<TCCollectionModel>)model didChangeSectionAtIndex:(NSUInteger)sectionIndex forChangeType:(NSUInteger)type {
+- (void)model:(id<TCCollectionViewModel>)model didChangeSectionAtIndex:(NSUInteger)sectionIndex forChangeType:(NSUInteger)type {
     switch(type) {
         case TCCollectionsChangeInsert:
             [self.collectionView insertSections:[NSIndexSet indexSetWithIndex:sectionIndex]
@@ -176,7 +158,7 @@
     }
 }
 
-- (void)model:(id<TCCollectionModel>)model didChangeObject:(id)anObject atIndexPath:(NSIndexPath *)indexPath forChangeType:(NSUInteger)type newIndexPath:(NSIndexPath *)newIndexPath {
+- (void)model:(id<TCCollectionViewModel>)model didChangeObject:(id)anObject atIndexPath:(NSIndexPath *)indexPath forChangeType:(NSUInteger)type newIndexPath:(NSIndexPath *)newIndexPath {
     switch(type) {
         case TCCollectionsChangeInsert:
             [self.collectionView insertItemsAtIndexPaths:[NSArray arrayWithObject:newIndexPath]
@@ -207,12 +189,12 @@
     }
 }
 
-- (void)modelDidChangeContent:(id<TCCollectionModel>)model {
+- (void)modelDidChangeContent:(id<TCCollectionViewModel>)model {
     [self updateNoDataLabelVisibility];
     [self.collectionView endUpdates];
 }
 
-- (void)modelDidChanged:(id<TCCollectionModel>)model {
+- (void)modelDidChanged:(id<TCCollectionViewModel>)model {
     [self updateNoDataLabelVisibility];
     [self.collectionView reloadData];
 }

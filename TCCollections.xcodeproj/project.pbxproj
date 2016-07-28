@@ -15,7 +15,7 @@
 		7337576C1CA5894500FF4F03 /* UICollectionView+Updates.m in Sources */ = {isa = PBXBuildFile; fileRef = 733757421CA5894500FF4F03 /* UICollectionView+Updates.m */; };
 		7337576D1CA5894500FF4F03 /* TCSelectionController.m in Sources */ = {isa = PBXBuildFile; fileRef = 733757461CA5894500FF4F03 /* TCSelectionController.m */; };
 		7337576E1CA5894500FF4F03 /* TCSelectionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7337574A1CA5894500FF4F03 /* TCSelectionModel.m */; };
-		7337576F1CA5894500FF4F03 /* TCTableBaseController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7337574E1CA5894500FF4F03 /* TCTableBaseController.m */; };
+		7337576F1CA5894500FF4F03 /* TCTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7337574E1CA5894500FF4F03 /* TCTableViewController.m */; };
 		733757701CA5894500FF4F03 /* TCTableModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 733757521CA5894500FF4F03 /* TCTableModel.m */; };
 		733757711CA5894500FF4F03 /* TCTableBaseView.m in Sources */ = {isa = PBXBuildFile; fileRef = 733757551CA5894500FF4F03 /* TCTableBaseView.m */; };
 		733757721CA5894500FF4F03 /* TCCollectionManagedModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7337575C1CA5894500FF4F03 /* TCCollectionManagedModel.m */; };
@@ -60,8 +60,8 @@
 		733757481CA5894500FF4F03 /* TCSelectionControllerModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCSelectionControllerModel.h; sourceTree = "<group>"; };
 		733757491CA5894500FF4F03 /* TCSelectionModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCSelectionModel.h; sourceTree = "<group>"; };
 		7337574A1CA5894500FF4F03 /* TCSelectionModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCSelectionModel.m; sourceTree = "<group>"; };
-		7337574D1CA5894500FF4F03 /* TCTableBaseController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCTableBaseController.h; sourceTree = "<group>"; };
-		7337574E1CA5894500FF4F03 /* TCTableBaseController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCTableBaseController.m; sourceTree = "<group>"; };
+		7337574D1CA5894500FF4F03 /* TCTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCTableViewController.h; sourceTree = "<group>"; };
+		7337574E1CA5894500FF4F03 /* TCTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCTableViewController.m; sourceTree = "<group>"; };
 		733757501CA5894500FF4F03 /* TCTableModel+Subclass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "TCTableModel+Subclass.h"; sourceTree = "<group>"; };
 		733757511CA5894500FF4F03 /* TCTableModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCTableModel.h; sourceTree = "<group>"; };
 		733757521CA5894500FF4F03 /* TCTableModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCTableModel.m; sourceTree = "<group>"; };
@@ -82,6 +82,8 @@
 		7337577D1CA58D0200FF4F03 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		7337577E1CA58D0200FF4F03 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		7337577F1CA58D0200FF4F03 /* TCCollections.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = TCCollections.podspec; sourceTree = "<group>"; };
+		7394B3881D4A312C001309AE /* TCTableViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCTableViewModel.h; sourceTree = "<group>"; };
+		7394B3891D4A336B001309AE /* TCCollectionViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCCollectionViewModel.h; sourceTree = "<group>"; };
 		73EA9A081CA7BFF8002C1D6A /* TCSectionHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCSectionHeaderView.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -162,10 +164,11 @@
 		733757381CA5894500FF4F03 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				7394B3891D4A336B001309AE /* TCCollectionViewModel.h */,
+				7337573C1CA5894500FF4F03 /* TCTitledCollectionModel.h */,
 				733757391CA5894500FF4F03 /* TCCollectionModel+Subclass.h */,
 				7337573A1CA5894500FF4F03 /* TCCollectionModel.h */,
 				7337573B1CA5894500FF4F03 /* TCCollectionModel.m */,
-				7337573C1CA5894500FF4F03 /* TCTitledCollectionModel.h */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -223,8 +226,8 @@
 		7337574C1CA5894500FF4F03 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				7337574D1CA5894500FF4F03 /* TCTableBaseController.h */,
-				7337574E1CA5894500FF4F03 /* TCTableBaseController.m */,
+				7337574D1CA5894500FF4F03 /* TCTableViewController.h */,
+				7337574E1CA5894500FF4F03 /* TCTableViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -232,6 +235,7 @@
 		7337574F1CA5894500FF4F03 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				7394B3881D4A312C001309AE /* TCTableViewModel.h */,
 				733757501CA5894500FF4F03 /* TCTableModel+Subclass.h */,
 				733757511CA5894500FF4F03 /* TCTableModel.h */,
 				733757521CA5894500FF4F03 /* TCTableModel.m */,
@@ -397,7 +401,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7337576F1CA5894500FF4F03 /* TCTableBaseController.m in Sources */,
+				7337576F1CA5894500FF4F03 /* TCTableViewController.m in Sources */,
 				7337576C1CA5894500FF4F03 /* UICollectionView+Updates.m in Sources */,
 				7337576E1CA5894500FF4F03 /* TCSelectionModel.m in Sources */,
 				733757691CA5894500FF4F03 /* TCTitledCollectionController.m in Sources */,

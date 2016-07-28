@@ -28,7 +28,7 @@
 @property (nonatomic, assign) NSInteger section;
 @property (nonatomic, strong) NSArray * sortDescriptors;
 
-@property (nonatomic, weak) id<TCCollectionModelDelegate> delegate;
+@property (nonatomic, weak) id<TCCollectionViewModelDelegate> delegate;
 
 - (NSPredicate*)fetchPredicate;
 

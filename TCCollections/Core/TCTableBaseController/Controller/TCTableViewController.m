@@ -1,15 +1,15 @@
 //
-//  TCTableBaseController.m
+//  TCTableViewController.m
 //  Tayphoon
 //
 //  Created by Tayphoon on 20.11.14.
 //  Copyright (c) 2014 Tayphoon. All rights reserved.
 //
 
-#import "TCTableBaseController.h"
+#import "TCTableViewController.h"
 #import "TCCollectionsConstants.h"
 
-@interface TCTableBaseController() {
+@interface TCTableViewController() {
     UITableView * _tableView;
     BOOL _isDealocProcessing;
     UIEdgeInsets _tableInsets;
@@ -19,7 +19,7 @@
 
 @end
 
-@implementation TCTableBaseController
+@implementation TCTableViewController
 
 - (id)init {
     self = [super init];
@@ -88,31 +88,10 @@
     return _noDataLabel;
 }
 
-- (void)setModel:(id<TCTableModel>)model {
+- (void)setModel:(id<TCTableViewModel>)model {
     _model.delegate = nil;
     _model = model;
     _model.delegate = self;
-}
-
-- (void)reloadDataWithCompletion:(void (^)(NSError *error))completion {
-    void (^completionBlock)(NSError *error) = ^(NSError *error) {
-        if(!error) {
-            [self.tableView reloadData];
-        }
-        
-        [self updateNoDataLabelVisibility];
-
-        if (completion) {
-            completion(error);
-        }
-    };
-    
-    if(self.model) {
-        [self.model updateModelWithCompletion:completionBlock];
-    }
-    else {
-        completionBlock(nil);
-    }
 }
 
 #pragma mark - UITableView DataSource
@@ -179,11 +158,11 @@
 
 #pragma mark - TCTableModel Delegate
 
-- (void)modelWillChangeContent:(id<TCTableModel>)model {
+- (void)modelWillChangeContent:(id<TCTableViewModel>)model {
     [self.tableView beginUpdates];
 }
 
-- (void)model:(id<TCTableModel>)model didChangeSectionAtIndex:(NSUInteger)sectionIndex forChangeType:(NSUInteger)type {
+- (void)model:(id<TCTableViewModel>)model didChangeSectionAtIndex:(NSUInteger)sectionIndex forChangeType:(NSUInteger)type {
     switch(type) {
         case TCCollectionsChangeInsert:
             [self.tableView insertSections:[NSIndexSet indexSetWithIndex:sectionIndex]
@@ -200,7 +179,7 @@
     }
 }
 
-- (void)model:(id<TCTableModel>)model didChangeObject:(id)anObject atIndexPath:(NSIndexPath *)indexPath forChangeType:(NSUInteger)type newIndexPath:(NSIndexPath *)newIndexPath {
+- (void)model:(id<TCTableViewModel>)model didChangeObject:(id)anObject atIndexPath:(NSIndexPath *)indexPath forChangeType:(NSUInteger)type newIndexPath:(NSIndexPath *)newIndexPath {
     switch(type) {
         case TCCollectionsChangeInsert:
             [self.tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:newIndexPath]
@@ -233,12 +212,12 @@
     }
 }
 
-- (void)modelDidChangeContent:(id<TCTableModel>)model {
+- (void)modelDidChangeContent:(id<TCTableViewModel>)model {
     [self updateNoDataLabelVisibility];
     [self.tableView endUpdates];
 }
 
-- (void)modelDidChanged:(id<TCTableModel>)model {
+- (void)modelDidChanged:(id<TCTableViewModel>)model {
     [self updateNoDataLabelVisibility];
     [self.tableView reloadData];
 }

@@ -6,7 +6,7 @@
 //  Copyright (c) 2015 Tayphoon. All rights reserved.
 //
 
-#import "TCTableBaseController.h"
+#import "TCTableViewController.h"
 #import "TCSelectionControllerModel.h"
 
 @class TCSelectionController;
@@ -20,9 +20,9 @@
 @end
 
 
-@interface TCSelectionController : TCTableBaseController
+@interface TCSelectionController : TCTableViewController
 
-@property (nonatomic, strong) id<TCTableModel, TCSelectionControllerModel> model;
+@property (nonatomic, strong) id<TCTableViewModel, TCSelectionControllerModel> model;
 @property (nonatomic, weak)   id delegate;
 
 @end

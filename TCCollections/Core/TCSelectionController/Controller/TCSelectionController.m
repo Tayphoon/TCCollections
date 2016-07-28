@@ -34,25 +34,6 @@
     self.tableView.tableFooterView = [UIView new];
 }
 
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(applicationWillEnterForeground)
-                                                 name:UIApplicationWillEnterForegroundNotification
-                                               object:nil];
-    
-    [self updateModel];
-}
-
-- (void)viewWillDisappear:(BOOL)animated {
-    [super viewWillDisappear:animated];
-    
-    [[NSNotificationCenter defaultCenter] removeObserver:self
-                                                    name:UIApplicationWillEnterForegroundNotification
-                                                  object:nil];
-}
-
 #pragma mark - UITableView DataSource
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -102,19 +83,5 @@
 }
 
 #pragma mark - Private methods
-
-- (void)updateModel {
-    [self.model updateModelWithCompletion:^(NSError *error) {
-        if(!error) {
-            [self.tableView reloadData];
-        }
-        
-        [self updateNoDataLabelVisibility];
-    }];
-}
-
-- (void)applicationWillEnterForeground {
-    [self updateModel];
-}
 
 @end
