@@ -34,7 +34,7 @@ Pod::Spec.new do |s|
     core.public_header_files = 'TCCollections/Core/**/*.{h}'
     core.source_files = 'TCCollections/TCCollectionsConstants.h', 'TCCollections/Core/**/*.{h,m}'
 
-    core.frameworks.dependency 'OALayoutAnchor', '~> 0.2.0'
+    core.ios.dependency 'OALayoutAnchor', '~> 0.2.0'
     core.frameworks = 'UIKit'
   end
 
