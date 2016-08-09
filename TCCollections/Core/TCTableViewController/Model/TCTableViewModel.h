@@ -8,9 +8,6 @@
 
 #import <Foundation/Foundation.h>
 
-#import "TCTableViewCell.h"
-#import "TCSectionHeaderView.h"
-
 @protocol TCTableViewModel;
 
 @protocol TCTableViewModelDelegate <NSObject>
@@ -43,7 +40,7 @@
 
 - (Class)classForHeaderInSection:(NSUInteger)section;
 
-- (UIView<TCSectionHeaderView>*)createViewForHeaderInSection:(NSUInteger)section;
+- (UIView*)createViewForHeaderInSection:(NSUInteger)section;
 
 - (id)itemForSection:(NSUInteger)section;
 
@@ -57,7 +54,7 @@
 
 - (NSString*)reuseIdentifierForIndexPath:(NSIndexPath*)indexPath;
 
-- (UITableViewCell<TCTableViewCell>*)createCellForIndexPath:(NSIndexPath*)indexPath;
+- (UITableViewCell*)createCellForIndexPath:(NSIndexPath*)indexPath;
 
 - (CGFloat)heightForItemAtIndexPath:(NSIndexPath*)indexPath constrainedToSize:(CGSize)size;
 

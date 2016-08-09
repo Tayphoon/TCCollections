@@ -10,6 +10,8 @@
 
 #import "TCTableViewController.h"
 #import "TCCollectionsConstants.h"
+#import "TCTableViewCell.h"
+#import "TCSectionHeaderView.h"
 
 @interface TCTableViewController() {
     UITableView * _tableView;
@@ -126,9 +128,10 @@
 - (UIView*)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
     if ([self.model respondsToSelector:@selector(createViewForHeaderInSection:)]) {
         
-        UIView<TCSectionHeaderView> * sectionHeader = [self.model createViewForHeaderInSection:section];
+        UIView * sectionHeader = [self.model createViewForHeaderInSection:section];
         if ([self.model respondsToSelector:@selector(itemForSection:)]) {
-            [sectionHeader setupWithItem:[self.model itemForSection:section]];
+            UIView<TCSectionHeaderView> * headerView = (UIView<TCSectionHeaderView>*)sectionHeader;
+            [headerView setupWithItem:[self.model itemForSection:section]];
         }
         
         return sectionHeader;

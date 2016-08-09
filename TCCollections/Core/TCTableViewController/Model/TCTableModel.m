@@ -7,6 +7,7 @@
 //
 
 #import "TCTableModel.h"
+#import "TCTableViewCell.h"
 
 @implementation TCTableModel
 
@@ -39,7 +40,7 @@
     return nil;
 }
 
-- (UIView<TCSectionHeaderView>*)createViewForHeaderInSection:(NSUInteger)section {
+- (UIView*)createViewForHeaderInSection:(NSUInteger)section {
     Class headerClass = [self classForHeaderInSection:section];
     if (headerClass) {
         return [[headerClass alloc] init];
@@ -63,7 +64,7 @@
     return nil;
 }
 
-- (UITableViewCell<TCTableViewCell> *)createCellForIndexPath:(NSIndexPath *)indexPath {
+- (UITableViewCell*)createCellForIndexPath:(NSIndexPath *)indexPath {
     Class cellClass = [self cellClassForIndexPath:indexPath];
     return [[cellClass alloc] initWithStyle:UITableViewCellStyleDefault
                             reuseIdentifier:[self reuseIdentifierForIndexPath:indexPath]];

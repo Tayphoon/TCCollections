@@ -11,9 +11,6 @@
 @interface TCTableBaseView : UIView
 
 @property (nonatomic, readonly) UITableView * tableView;
-@property (nonatomic, assign) UIEdgeInsets contentInsets;
 @property (nonatomic, assign) CGFloat tableViewViewBottomMargin;
-
-- (void)layoutTableView;
 
 @end

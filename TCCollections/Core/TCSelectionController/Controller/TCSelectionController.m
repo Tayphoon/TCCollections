@@ -37,7 +37,7 @@
 #pragma mark - UITableView DataSource
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell<TCTableViewCell> * cell = (UITableViewCell<TCTableViewCell>*)[super tableView:tableView cellForRowAtIndexPath:indexPath];
+    UITableViewCell * cell = [super tableView:tableView cellForRowAtIndexPath:indexPath];
     
     BOOL isCellSelected = [self.model isItemSelectedAtIndexPath:indexPath];
     [cell setAccessoryType:(isCellSelected) ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone];
