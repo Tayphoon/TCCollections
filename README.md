@@ -13,6 +13,10 @@ To run the example project, clone the repo, and run `pod install` from the Demo 
 
 TCCollections requires [iOS 8.0](https://developer.apple.com/library/ios/releasenotes/General/WhatsNewIniOS/Articles/iOS8.html) and above.
 
+Several third-party open source libraries are used within TCCollections, including:
+
+1. [OALayoutAnchor](https://github.com/oarrabi/OALayoutAnchor) - 100% port of NSLayoutAnchor to iOS 7
+
 ## Installation
 
 TCCollections is available through [CocoaPods](http://cocoapods.org). To install
