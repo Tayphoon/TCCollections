@@ -8,7 +8,23 @@
 
 #import "TCCollectionManagedModel.h"
 
+#ifdef _COREDATADEFINES_H
+@interface TCCollectionManagedModel() {
+    NSFetchedResultsController * _fetchController;
+}
+
+@end
+#endif
+
 @implementation TCCollectionManagedModel
+
+#ifdef _COREDATADEFINES_H
+
+- (NSFetchedResultsController*)fetchController {
+    return _fetchController;
+}
+
+#endif
 
 - (NSArray*)items {
 #ifdef _COREDATADEFINES_H

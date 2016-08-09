@@ -9,7 +9,23 @@
 #import "TCTableManagedModel.h"
 #import "TCTableViewCell.h"
 
+#ifdef _COREDATADEFINES_H
+@interface TCTableManagedModel() {
+    NSFetchedResultsController * _fetchController;
+}
+
+@end
+#endif
+
 @implementation TCTableManagedModel
+
+#ifdef _COREDATADEFINES_H
+
+- (NSFetchedResultsController*)fetchController {
+    return _fetchController;
+}
+
+#endif
 
 - (NSArray*)items {
 #ifdef _COREDATADEFINES_H

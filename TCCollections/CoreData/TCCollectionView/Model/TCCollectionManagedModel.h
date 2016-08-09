@@ -12,9 +12,11 @@
 @interface TCCollectionManagedModel : NSObject<TCCollectionModel>
 #else
 @interface TCCollectionManagedModel : NSObject<TCCollectionModel, NSFetchedResultsControllerDelegate> {
-@protected
-    NSFetchedResultsController * _fetchController;
+
 }
+
+@property (nonatomic, readonly) NSFetchedResultsController * fetchController;
+
 #endif
 
 @property (nonatomic, readonly) NSArray * items;

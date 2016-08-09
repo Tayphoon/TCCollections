@@ -12,9 +12,11 @@
 @interface TCTableManagedModel : NSObject<TCTableModel>
 #else
 @interface TCTableManagedModel : NSObject<TCTableModel, NSFetchedResultsControllerDelegate> {
-@protected
-    NSFetchedResultsController * _fetchController;
+
 }
+
+@property (nonatomic, readonly) NSFetchedResultsController * fetchController;
+
 #endif
 
 @property (nonatomic, readonly) NSArray * items;
