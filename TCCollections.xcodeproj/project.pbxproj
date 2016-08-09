@@ -43,6 +43,7 @@
 /* Begin PBXFileReference section */
 		0FEF50551282EF6BFC7BA72B /* libPods-TCCollections.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-TCCollections.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7306FA471CA6F92700D67444 /* TCCollectionsConstants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = TCCollectionsConstants.h; path = Core/TCCollectionsConstants.h; sourceTree = "<group>"; };
+		730A871B1D5A5B6F00DD3D94 /* TCTableViewContainer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCTableViewContainer.h; sourceTree = "<group>"; };
 		733757231CA5888000FF4F03 /* libTCCollections.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libTCCollections.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		733757261CA5888000FF4F03 /* TCCollections.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TCCollections.h; sourceTree = "<group>"; };
 		733757341CA5894500FF4F03 /* TCCollectionController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCCollectionController.h; sourceTree = "<group>"; };
@@ -270,6 +271,7 @@
 				733757551CA5894500FF4F03 /* TCTableBaseView.m */,
 				733757561CA5894500FF4F03 /* TCTableViewCell.h */,
 				73EA9A081CA7BFF8002C1D6A /* TCSectionHeaderView.h */,
+				730A871B1D5A5B6F00DD3D94 /* TCTableViewContainer.h */,
 			);
 			path = View;
 			sourceTree = "<group>";

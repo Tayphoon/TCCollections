@@ -8,7 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-@interface TCTableBaseView : UIView
+#import "TCTableViewContainer.h"
+
+@interface TCTableBaseView : UIView<TCTableViewContainer>
 
 @property (nonatomic, readonly) UITableView * tableView;
 @property (nonatomic, assign) CGFloat tableViewViewBottomMargin;

@@ -7,7 +7,7 @@
 //
 
 #import "TCTableController.h"
-#import "TCTableBaseView.h"
+#import "TCTableViewContainer.h"
 
 @interface TCTableController ()
 
@@ -39,8 +39,8 @@
 }
 
 - (void)makeInputViewTransitionWithDownDirection:(BOOL)down notification:(NSNotification *)notification {
-    if ([self.view isKindOfClass:[TCTableBaseView class]]) {
-        TCTableBaseView * baseView = (TCTableBaseView*)self.view;
+    if ([self.view conformsToProtocol:@protocol(TCTableViewContainer)]) {
+        UIView<TCTableViewContainer> * baseView = (UIView<TCTableViewContainer>*)self.view;
         
         NSDictionary *userInfo = [notification userInfo];
         NSTimeInterval animationDuration;
