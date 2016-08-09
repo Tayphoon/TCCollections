@@ -40,7 +40,7 @@ Pod::Spec.new do |s|
 
   s.subspec 'CoreData' do |cdos|
     cdos.public_header_files = 'TCCollections/CoreData/**/*.{h}'
-    cdos.source_files = 'TCCollections/CoreData/**/*.{h,m}'
+    cdos.source_files = 'TCCollections/TCCollectionsConstants.h', 'TCCollections/CoreData/**/*.{h,m}'
 
     cdos.dependency 'TCCollections/Core'
     cdos.frameworks = 'CoreData'
