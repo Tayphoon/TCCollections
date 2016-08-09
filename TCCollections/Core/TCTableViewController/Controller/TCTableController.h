@@ -8,6 +8,7 @@
 
 #import "TCTableViewController.h"
 #import "TCTableModel.h"
+#import "TCTableViewController+TableKeyboardLayout.h"
 
 /**
  *  Table controll implement TCTableModel methods
@@ -17,11 +18,6 @@
 @property (nonatomic, strong) id<TCTableModel> model;
 
 - (void)reloadDataWithCompletion:(void (^)(NSError *error))completion;
-
-/**
- Use this if your self.view is subclass of TCTableBaseView
- */
-- (void)makeInputViewTransitionWithDownDirection:(BOOL)down notification:(NSNotification *)notification;
 
 - (void)showErrorAlertWithMessage:(NSString*)message;
 

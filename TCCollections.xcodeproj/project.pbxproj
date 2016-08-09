@@ -24,6 +24,7 @@
 		733757781CA589E200FF4F03 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 733757771CA589E200FF4F03 /* Foundation.framework */; };
 		7337577A1CA589EF00FF4F03 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 733757791CA589EF00FF4F03 /* UIKit.framework */; };
 		73A760571D5A47600038049A /* TCTableController.m in Sources */ = {isa = PBXBuildFile; fileRef = 73A760561D5A47600038049A /* TCTableController.m */; };
+		73D7881A1D5A5E5400627624 /* TCTableViewController+TableKeyboardLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 73D788191D5A5E5400627624 /* TCTableViewController+TableKeyboardLayout.m */; };
 		D6FD007B19069E3631FB0922 /* libPods-TCCollections.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0FEF50551282EF6BFC7BA72B /* libPods-TCCollections.a */; };
 /* End PBXBuildFile section */
 
@@ -90,6 +91,8 @@
 		7394B3891D4A336B001309AE /* TCCollectionViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCCollectionViewModel.h; sourceTree = "<group>"; };
 		73A760551D5A47600038049A /* TCTableController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCTableController.h; sourceTree = "<group>"; };
 		73A760561D5A47600038049A /* TCTableController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCTableController.m; sourceTree = "<group>"; };
+		73D788181D5A5E5400627624 /* TCTableViewController+TableKeyboardLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "TCTableViewController+TableKeyboardLayout.h"; sourceTree = "<group>"; };
+		73D788191D5A5E5400627624 /* TCTableViewController+TableKeyboardLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "TCTableViewController+TableKeyboardLayout.m"; sourceTree = "<group>"; };
 		73EA9A081CA7BFF8002C1D6A /* TCSectionHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCSectionHeaderView.h; sourceTree = "<group>"; };
 		9078595800ECA69BA2D33253 /* Pods-TCCollections.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TCCollections.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TCCollections/Pods-TCCollections.debug.xcconfig"; sourceTree = "<group>"; };
 		C96ED412C5845A407D74938F /* Pods-TCCollections.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TCCollections.release.xcconfig"; path = "Pods/Target Support Files/Pods-TCCollections/Pods-TCCollections.release.xcconfig"; sourceTree = "<group>"; };
@@ -247,6 +250,8 @@
 			children = (
 				7337574D1CA5894500FF4F03 /* TCTableViewController.h */,
 				7337574E1CA5894500FF4F03 /* TCTableViewController.m */,
+				73D788181D5A5E5400627624 /* TCTableViewController+TableKeyboardLayout.h */,
+				73D788191D5A5E5400627624 /* TCTableViewController+TableKeyboardLayout.m */,
 				73A760551D5A47600038049A /* TCTableController.h */,
 				73A760561D5A47600038049A /* TCTableController.m */,
 			);
@@ -469,6 +474,7 @@
 				733757681CA5894500FF4F03 /* TCCollectionController.m in Sources */,
 				733757711CA5894500FF4F03 /* TCTableBaseView.m in Sources */,
 				733757701CA5894500FF4F03 /* TCTableModel.m in Sources */,
+				73D7881A1D5A5E5400627624 /* TCTableViewController+TableKeyboardLayout.m in Sources */,
 				7337576D1CA5894500FF4F03 /* TCSelectionController.m in Sources */,
 				7337576A1CA5894500FF4F03 /* TCCollectionModel.m in Sources */,
 				7337576B1CA5894500FF4F03 /* TCTitledCollectionView.m in Sources */,
