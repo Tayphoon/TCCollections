@@ -28,8 +28,12 @@ source 'https://github.com/Tayphoon/TayphoonSpecs.git'
 platform :ios, '8.0'
  
 target 'DemoApp' do
-  pod 'TCCollections'
+  pod 'TCCollections', '~> 0.1.1'
 end
+
+# CoreData support optional component
+pod 'TCCollections/CoreData', '~> 0.1.1'
+
 ```
 
 ## Author
