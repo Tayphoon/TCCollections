@@ -1,5 +1,5 @@
 //
-//  TCTableBaseController.m
+//  TCTableViewController.m
 //  Tayphoon
 //
 //  Created by Tayphoon on 20.11.14.
