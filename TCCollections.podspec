@@ -26,12 +26,10 @@ Pod::Spec.new do |s|
   s.ios.deployment_target = '8.0'
   s.requires_arc = true
 
-  s.public_header_files = 'TCCollections/TCCollections.h'
-  s.source_files = 'TCCollections/TCCollections.h'
   s.default_subspecs = 'Core'
 
   s.subspec 'Core' do |core|
-    core.public_header_files = 'TCCollections/Core/**/*.{h}'
+    core.public_header_files = 'TCCollections/TCCollections.h', 'TCCollections/Core/**/*.{h}'
     core.source_files = 'TCCollections/TCCollectionsConstants.h', 'TCCollections/Core/**/*.{h,m}'
 
     core.ios.dependency 'OALayoutAnchor', '~> 0.2.0'
@@ -40,7 +38,7 @@ Pod::Spec.new do |s|
 
   s.subspec 'CoreData' do |cdos|
     cdos.public_header_files = 'TCCollections/CoreData/**/*.{h}'
-    cdos.source_files = 'TCCollections/TCCollectionsConstants.h', 'TCCollections/CoreData/**/*.{h,m}'
+    cdos.source_files = 'TCCollections/CoreData/**/*.{h,m}'
 
     cdos.dependency 'TCCollections/Core'
     cdos.frameworks = 'CoreData'
