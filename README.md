@@ -19,7 +19,13 @@ TCCollections is available through [CocoaPods](http://cocoapods.org). To install
 it, simply add the following line to your Podfile:
 
 ```ruby
-pod "TCCollections"
+source 'https://github.com/Tayphoon/TayphoonSpecs.git'
+ 
+platform :ios, '8.0'
+ 
+target 'DemoApp' do
+  pod 'TCCollections'
+end
 ```
 
 ## Author
