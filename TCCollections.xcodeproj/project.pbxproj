@@ -286,7 +286,7 @@
 			children = (
 				733757581CA5894500FF4F03 /* TCCollectionView */,
 				7337575D1CA5894500FF4F03 /* TCSelectionController */,
-				733757611CA5894500FF4F03 /* TCTableBaseController */,
+				733757611CA5894500FF4F03 /* TCTableViewController */,
 			);
 			path = CoreData;
 			sourceTree = "<group>";
@@ -326,12 +326,12 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
-		733757611CA5894500FF4F03 /* TCTableBaseController */ = {
+		733757611CA5894500FF4F03 /* TCTableViewController */ = {
 			isa = PBXGroup;
 			children = (
 				733757621CA5894500FF4F03 /* Model */,
 			);
-			path = TCTableBaseController;
+			path = TCTableViewController;
 			sourceTree = "<group>";
 		};
 		733757621CA5894500FF4F03 /* Model */ = {
