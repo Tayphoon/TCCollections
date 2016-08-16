@@ -8,56 +8,34 @@
 
 #import "TCCollectionManagedModel.h"
 
-#ifdef _COREDATADEFINES_H
 @interface TCCollectionManagedModel() {
     NSFetchedResultsController * _fetchController;
 }
 
 @end
-#endif
 
 @implementation TCCollectionManagedModel
-
-#ifdef _COREDATADEFINES_H
 
 - (NSFetchedResultsController*)fetchController {
     return _fetchController;
 }
 
-#endif
-
 - (NSArray*)items {
-#ifdef _COREDATADEFINES_H
     return _fetchController.fetchedObjects;
-#else
-    return nil;
-#endif
 }
 
 - (NSUInteger)numberOfSections {
-#ifdef _COREDATADEFINES_H
     return [_fetchController.sections count];
-#else
-    return 0;
-#endif
 }
 
 - (NSString*)titleForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath*)indexPath {
-#ifdef _COREDATADEFINES_H
     id<NSFetchedResultsSectionInfo> sectionInfo = [_fetchController.sections objectAtIndex:indexPath.section];
     return sectionInfo.name;
-#else
-    return nil;
-#endif
 }
 
 - (NSUInteger)numberOfItemsInSection:(NSInteger)section {
-#ifdef _COREDATADEFINES_H
     id<NSFetchedResultsSectionInfo> sectionInfo = [_fetchController.sections objectAtIndex:section];
     return [sectionInfo numberOfObjects];
-#else
-    return 0;
-#endif
 }
 
 - (NSString*)reuseIdentifierForCellAtIndexPath:(NSIndexPath*)indexPath {
@@ -73,21 +51,16 @@
 }
 
 - (id)itemAtIndexPath:(NSIndexPath*)indexPath {
-#ifdef _COREDATADEFINES_H
     if(indexPath.section < [self numberOfSections] &&
        indexPath.row < [self numberOfItemsInSection:indexPath.section]) {
         return [_fetchController objectAtIndexPath:indexPath];
     }
-#endif
+    
     return nil;
 }
 
 - (NSIndexPath*)indexPathOfObject:(id)object {
-#ifdef _COREDATADEFINES_H
     return [_fetchController indexPathForObject:object];
-#else
-    return nil;
-#endif
 }
 
 - (void)updateModelWithCompletion:(void (^)(NSError *))completion {
@@ -97,7 +70,6 @@
 }
 
 - (void)clearModelData {
-#ifdef _COREDATADEFINES_H
     if (self.cacheFileName) {
         [NSFetchedResultsController deleteCacheWithName:self.cacheFileName];
     }
@@ -108,7 +80,6 @@
         [_fetchController setDelegate:nil];
         _fetchController = nil;
     }
-#endif
 }
 
 - (NSPredicate*)fetchPredicate {
@@ -118,7 +89,6 @@
 - (void)reloadModelSourceControllerWithCompletion:(void (^)(NSError * error))completion {
     NSError * fetchError = nil;
 
-#ifdef _COREDATADEFINES_H
     _fetchController.delegate = nil;
     
     if (self.cacheFileName) {
@@ -143,7 +113,6 @@
     [_fetchController.fetchRequest setSortDescriptors:_sortDescriptors];
     [_fetchController setDelegate:self];
     [_fetchController performFetch:&fetchError];
-#endif
     
     if(completion) {
         completion(fetchError);
@@ -152,7 +121,6 @@
 
 #pragma mark - NSFetchedResultsControllerDelegate
 
-#ifdef _COREDATADEFINES_H
 - (void)controllerWillChangeContent:(NSFetchedResultsController*)controller {
     [self modelWillChangeContent];
 }
@@ -179,7 +147,6 @@
 - (void)controllerDidChangeContent:(NSFetchedResultsController*)controller {
     [self modelDidChangeContent];
 }
-#endif
 
 #pragma mark - Delegate methods
 

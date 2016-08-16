@@ -6,18 +6,15 @@
 //  Copyright (c) 2015 Tayphoon. All rights reserved.
 //
 
+#import <CoreData/CoreData.h>
+
 #import "TCTableModel.h"
 
-#ifndef _COREDATADEFINES_H
-@interface TCTableManagedModel : NSObject<TCTableModel>
-#else
 @interface TCTableManagedModel : NSObject<TCTableModel, NSFetchedResultsControllerDelegate> {
 
 }
 
 @property (nonatomic, readonly) NSFetchedResultsController * fetchController;
-
-#endif
 
 @property (nonatomic, readonly) NSArray * items;
 @property (nonatomic, readonly) NSString * entityName;

@@ -6,26 +6,21 @@
 //  Copyright (c) 2015 Tayphoon. All rights reserved.
 //
 
+#import <CoreData/CoreData.h>
+
 #import "TCCollectionModel.h"
 
-#ifndef _COREDATADEFINES_H
-@interface TCCollectionManagedModel : NSObject<TCCollectionModel>
-#else
 @interface TCCollectionManagedModel : NSObject<TCCollectionModel, NSFetchedResultsControllerDelegate> {
 
 }
 
 @property (nonatomic, readonly) NSFetchedResultsController * fetchController;
 
-#endif
-
 @property (nonatomic, readonly) NSArray * items;
 @property (nonatomic, readonly) NSString * entityName;
 @property (nonatomic, readonly) NSString * sectionNameKeyPath;
 @property (nonatomic, readonly) NSString * cacheFileName;
-#ifdef _COREDATADEFINES_H
 @property (nonatomic, readonly) NSManagedObjectContext * context;
-#endif
 
 @property (nonatomic, assign) NSInteger section;
 @property (nonatomic, strong) NSArray * sortDescriptors;
