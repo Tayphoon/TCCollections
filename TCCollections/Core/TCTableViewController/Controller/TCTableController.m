@@ -14,7 +14,7 @@
 
 @implementation TCTableController
 
-@dynamic model;
+@dynamic tableViewModel;
 
 - (void)reloadDataWithCompletion:(void (^)(NSError *error))completion {
     void (^completionBlock)(NSError *error) = ^(NSError *error) {
@@ -29,8 +29,8 @@
         }
     };
     
-    if(self.model) {
-        [self.model updateModelWithCompletion:completionBlock];
+    if(self.tableViewModel) {
+        [self.tableViewModel updateModelWithCompletion:completionBlock];
     }
     else {
         completionBlock(nil);

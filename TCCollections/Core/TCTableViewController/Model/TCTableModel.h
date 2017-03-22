@@ -1,6 +1,6 @@
 //
 //  TCTableModel.h
-//  Tayphoon
+//  TCCollections
 //
 //  Created by Tayphoon on 14.11.14.
 //  Copyright (c) 2014 Tayphoon. All rights reserved.

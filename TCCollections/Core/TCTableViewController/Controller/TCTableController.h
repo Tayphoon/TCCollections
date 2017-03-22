@@ -15,7 +15,7 @@
  */
 @interface TCTableController : TCTableViewController
 
-@property (nonatomic, strong) id<TCTableModel> model;
+@property (nonatomic, strong) id<TCTableModel> tableViewModel;
 
 - (void)reloadDataWithCompletion:(void (^)(NSError *error))completion;
 

@@ -24,8 +24,6 @@
 
 - (void)modelDidChangeContent:(id<TCTableViewModel>)model;
 
-- (void)modelCountersDidChanged:(id<TCTableViewModel>)model;
-
 @end
 
 @protocol TCTableViewModel <NSObject>
@@ -34,7 +32,7 @@
 
 @optional
 
-- (NSString*)titleForSection:(NSInteger)section;
+- (NSString*)titleForHeaderInSection:(NSInteger)section;
 
 - (CGFloat)heightForHeaderInSection:(NSUInteger)section constrainedToSize:(CGSize)size;
 
@@ -60,6 +58,6 @@
 
 - (id)itemAtIndexPath:(NSIndexPath*)indexPath;
 
-- (NSIndexPath *)indexPathOfObject:(id)object;
+- (NSIndexPath*)indexPathOfObject:(id)object;
 
 @end

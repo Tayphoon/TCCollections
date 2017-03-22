@@ -1,6 +1,6 @@
 //
 //  TCTableModel+Subclass.h
-//  Tayphoon
+//  TCCollections
 //
 //  Created by Tayphoon on 14.04.15.
 //  Copyright (c) 2015 Tayphoon. All rights reserved.
@@ -22,7 +22,5 @@
 - (void)modelDidChangeContent;
 
 - (void)modelDidChanged;
-
-- (void)modelCountersDidChanged;
 
 @end

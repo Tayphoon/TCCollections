@@ -100,10 +100,6 @@
     return [_fetchController indexPathForObject:object];
 }
 
-- (Class)controllerClassForItemAtIndexPath:(NSIndexPath*)indexPath {
-    return nil;
-}
-
 - (void)updateModelWithCompletion:(void (^)(NSError *))completion {
     if (completion) {
         completion(nil);
@@ -218,12 +214,6 @@
 - (void)modelDidChanged {
     if([self.delegate respondsToSelector:@selector(modelDidChanged:)]) {
         [self.delegate modelDidChanged:self];
-    }
-}
-
-- (void)modelCountersDidChanged {
-    if([self.delegate respondsToSelector:@selector(modelCountersDidChanged:)]) {
-        [self.delegate modelCountersDidChanged:self];
     }
 }
 

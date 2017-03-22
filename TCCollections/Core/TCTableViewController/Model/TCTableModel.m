@@ -1,6 +1,6 @@
 //
 //  TCTableModel.c
-//  Tayphoon
+//  TCCollections
 //
 //  Created by Tayphoon on 14.04.15.
 //  Copyright (c) 2015 Tayphoon. All rights reserved.
@@ -20,19 +20,10 @@
 }
 
 - (NSUInteger)numberOfSections {
-    return 0;
-}
-
-- (NSString *)titleForSection:(NSInteger)section {
-    return nil;
+    return 1;
 }
 
 - (CGFloat)heightForHeaderInSection:(NSUInteger)section constrainedToSize:(CGSize)size {
-    Class headerClass = [self classForHeaderInSection:section];
-    if (headerClass && [headerClass respondsToSelector:@selector(heightForItem:constrainedToSize:)]) {
-        return [headerClass heightForItem:[self itemForSection:section] constrainedToSize:size];
-    }
-    
     return 0.0;
 }
 
@@ -42,13 +33,10 @@
 
 - (UIView*)createViewForHeaderInSection:(NSUInteger)section {
     Class headerClass = [self classForHeaderInSection:section];
-    if (headerClass) {
-        return [[headerClass alloc] init];
-    }
-    return nil;
+    return (headerClass) ? [[headerClass alloc] init] : nil;
 }
 
-- (id)itemForSection:(NSUInteger)section {
+- (NSString *)titleForHeaderInSection:(NSInteger)section {
     return nil;
 }
 
@@ -134,12 +122,6 @@
 - (void)modelDidChanged {
     if([self.delegate respondsToSelector:@selector(modelDidChanged:)]) {
         [self.delegate modelDidChanged:self];
-    }
-}
-
-- (void)modelCountersDidChanged {
-    if([self.delegate respondsToSelector:@selector(modelCountersDidChanged:)]) {
-        [self.delegate modelCountersDidChanged:self];
     }
 }
 

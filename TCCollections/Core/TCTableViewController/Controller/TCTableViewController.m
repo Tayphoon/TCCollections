@@ -1,6 +1,6 @@
 //
 //  TCTableViewController.m
-//  Tayphoon
+//  TCCollections
 //
 //  Created by Tayphoon on 20.11.14.
 //  Copyright (c) 2014 Tayphoon. All rights reserved.
@@ -17,10 +17,10 @@
     UITableView * _tableView;
     BOOL _isDealocProcessing;
     UIEdgeInsets _tableInsets;
-    NSLayoutConstraint * _activityIndicatorTopConstraint;
+    UIActivityIndicatorView * _activityIndicator;
 }
 
-@property (nonatomic, strong) UIActivityIndicatorView * activityIndicator;
+@property (nonatomic, strong) NSLayoutConstraint * activityIndicatorTopConstraint;
 
 @end
 
@@ -46,13 +46,6 @@
         _tableView = [[UITableView alloc] init];
         _tableView.backgroundColor = [UIColor clearColor];
         _tableView.translatesAutoresizingMaskIntoConstraints = NO;
-        
-        if([_tableView respondsToSelector:@selector(setSeparatorInset:)]) {
-            [_tableView setSeparatorInset:UIEdgeInsetsZero];
-        }
-        if([_tableView respondsToSelector:@selector(setLayoutMargins:)]) {
-            [_tableView setLayoutMargins:UIEdgeInsetsZero];
-        }
         
         [self.view addSubview:_tableView];
         [self configureTableLayoutConstraints];
@@ -85,32 +78,32 @@
     return _noDataLabel;
 }
 
-- (void)setModel:(id<TCTableViewModel>)model {
-    _model.delegate = nil;
-    _model = model;
-    _model.delegate = self;
+- (void)setTableViewModel:(id<TCTableViewModel>)tableViewModel {
+    _tableViewModel.delegate = nil;
+    _tableViewModel = tableViewModel;
+    _tableViewModel.delegate = self;
 }
 
 #pragma mark - UITableView DataSource
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return [self.model numberOfSections];
+    return [self.tableViewModel numberOfSections];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [self.model numberOfItemsInSection:section];
+    return [self.tableViewModel numberOfItemsInSection:section];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:[self.model reuseIdentifierForIndexPath:indexPath]];
+    UITableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:[self.tableViewModel reuseIdentifierForIndexPath:indexPath]];
     
     if (!cell) {
-        cell = [self.model createCellForIndexPath:indexPath];
+        cell = [self.tableViewModel createCellForIndexPath:indexPath];
     }
     
     if ([cell conformsToProtocol:@protocol(TCTableViewCell)]) {
         UITableViewCell<TCTableViewCell> * tableCell = (UITableViewCell<TCTableViewCell>*)cell;
-        tableCell.item = [self.model itemAtIndexPath:indexPath];
+        tableCell.item = [self.tableViewModel itemAtIndexPath:indexPath];
     }
     
     return cell;
@@ -118,40 +111,12 @@
 
 #pragma mark - UITableView Delegate
 
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    if ([self.model respondsToSelector:@selector(heightForHeaderInSection:constrainedToSize:)]) {
-        return [self.model heightForHeaderInSection:section constrainedToSize:tableView.bounds.size];
-    }
-    return 0;
-}
-
-- (UIView*)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-    if ([self.model respondsToSelector:@selector(createViewForHeaderInSection:)]) {
-        
-        UIView * sectionHeader = [self.model createViewForHeaderInSection:section];
-        if ([self.model respondsToSelector:@selector(itemForSection:)]) {
-            UIView<TCSectionHeaderView> * headerView = (UIView<TCSectionHeaderView>*)sectionHeader;
-            [headerView setupWithItem:[self.model itemForSection:section]];
-        }
-        
-        return sectionHeader;
-    }
-    
-    return nil;
+- (NSString*)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+    return [self.tableViewModel titleForHeaderInSection:section];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return [self.model heightForItemAtIndexPath:indexPath constrainedToSize:tableView.frame.size];
-}
-
-- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if ([cell respondsToSelector:@selector(setSeparatorInset:)]) {
-        [cell setSeparatorInset:UIEdgeInsetsZero];
-    }
-    
-    if ([cell respondsToSelector:@selector(setLayoutMargins:)]) {
-        [cell setLayoutMargins:UIEdgeInsetsZero];
-    }
+    return [self.tableViewModel heightForItemAtIndexPath:indexPath constrainedToSize:tableView.frame.size];
 }
 
 #pragma mark - TCTableModel Delegate
@@ -267,7 +232,7 @@
 
 - (void)updateNoDataLabelVisibility {
     if (_noDataLabel) {
-        _noDataLabel.hidden = ([self.model numberOfItemsInSection:0] > 0);
+        _noDataLabel.hidden = ([self.tableViewModel numberOfItemsInSection:0] > 0);
     }
 }
 
@@ -341,25 +306,25 @@
 #pragma mark - AutoLayout methods
 
 - (void)configureTableLayoutConstraints {
-    [_tableView.topAnchor constraintEqualToAnchor:self.view.topAnchor].active = YES;
-    [_tableView.bottomAnchor constraintEqualToAnchor:self.view.bottomAnchor].active = YES;
-    [_tableView.leadingAnchor constraintEqualToAnchor:self.view.leadingAnchor].active = YES;
-    [_tableView.trailingAnchor constraintEqualToAnchor:self.view.trailingAnchor].active = YES;
+    [self.tableView.topAnchor constraintEqualToAnchor:self.view.topAnchor].active = YES;
+    [self.tableView.bottomAnchor constraintEqualToAnchor:self.view.bottomAnchor].active = YES;
+    [self.tableView.leadingAnchor constraintEqualToAnchor:self.view.leadingAnchor].active = YES;
+    [self.tableView.trailingAnchor constraintEqualToAnchor:self.view.trailingAnchor].active = YES;
 }
 
 - (void)configureNoDataLayoutConstraintsForView:(UIView*)superView {
-    [_noDataLabel.topAnchor constraintEqualToAnchor:superView.topAnchor].active = YES;
-    [_noDataLabel.bottomAnchor constraintEqualToAnchor:superView.bottomAnchor].active = YES;
-    [_noDataLabel.leadingAnchor constraintEqualToAnchor:superView.leadingAnchor].active = YES;
-    [_noDataLabel.trailingAnchor constraintEqualToAnchor:superView.trailingAnchor].active = YES;
+    [self.noDataLabel.topAnchor constraintEqualToAnchor:superView.topAnchor].active = YES;
+    [self.noDataLabel.bottomAnchor constraintEqualToAnchor:superView.bottomAnchor].active = YES;
+    [self.noDataLabel.leadingAnchor constraintEqualToAnchor:superView.leadingAnchor].active = YES;
+    [self.noDataLabel.trailingAnchor constraintEqualToAnchor:superView.trailingAnchor].active = YES;
 }
 
 - (void)configureActivityIndicatorLayoutConstraints {
-    _activityIndicatorTopConstraint = [_activityIndicator.topAnchor constraintEqualToAnchor:self.tableView.topAnchor constant:-30];
-    _activityIndicatorTopConstraint.active = YES;
-    [_activityIndicator.leadingAnchor constraintEqualToAnchor:self.tableView.leadingAnchor].active = YES;
-    [_activityIndicator.trailingAnchor constraintEqualToAnchor:self.tableView.trailingAnchor].active = YES;
-    [_activityIndicator.heightAnchor constraintEqualToConstant:30.0f].active = YES;
+    self.activityIndicatorTopConstraint = [self.activityIndicator.topAnchor constraintEqualToAnchor:self.tableView.topAnchor constant:-30];
+    self.activityIndicatorTopConstraint.active = YES;
+    [self.activityIndicator.leadingAnchor constraintEqualToAnchor:self.tableView.leadingAnchor].active = YES;
+    [self.activityIndicator.trailingAnchor constraintEqualToAnchor:self.tableView.trailingAnchor].active = YES;
+    [self.activityIndicator.heightAnchor constraintEqualToConstant:30.0f].active = YES;
 }
 
 #pragma mark - Private methods
@@ -369,7 +334,7 @@
         _activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
         _activityIndicator.hidesWhenStopped = YES;
         _activityIndicator.hidden = YES;
-        _activityIndicator.backgroundColor = [UIColor whiteColor];
+        _activityIndicator.backgroundColor = [UIColor clearColor];
         _activityIndicator.translatesAutoresizingMaskIntoConstraints = NO;
         [self.tableView.superview insertSubview:_activityIndicator aboveSubview:self.tableView];
         [self configureActivityIndicatorLayoutConstraints];

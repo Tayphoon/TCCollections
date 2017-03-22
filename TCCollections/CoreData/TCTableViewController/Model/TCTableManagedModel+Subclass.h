@@ -25,6 +25,4 @@
 
 - (void)modelDidChanged;
 
-- (void)modelCountersDidChanged;
-
 @end
