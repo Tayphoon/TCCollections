@@ -212,34 +212,34 @@
 - (void)model:(id<TCTitledCollectionModel>)model didChangeObject:(id)anObject atIndexPath:(NSIndexPath *)indexPath forChangeType:(NSUInteger)type newIndexPath:(NSIndexPath *)newIndexPath onPage:(NSInteger)pageIndex {
     switch(type) {
         case TCCollectionsChangeInsert:
-            [self.collectionView insertItemsAtIndexPaths:[NSArray arrayWithObject:newIndexPath]
+            [self.collectionView insertItemsAtIndexPaths:@[newIndexPath]
                                                   onPage:pageIndex
                                                 animated:YES];
             break;
         case TCCollectionsChangeDelete:
-            [self.collectionView deleteItemsAtIndexPaths:[NSArray arrayWithObject:indexPath]
+            [self.collectionView deleteItemsAtIndexPaths:@[indexPath]
                                                   onPage:pageIndex
                                                 animated:YES];
             break;
         case TCCollectionsChangeMove:
-            [self.collectionView deleteItemsAtIndexPaths:[NSArray arrayWithObject:indexPath]
+            [self.collectionView deleteItemsAtIndexPaths:@[indexPath]
                                                   onPage:pageIndex
                                                 animated:YES];
-            [self.collectionView insertItemsAtIndexPaths:[NSArray arrayWithObject:newIndexPath]
+            [self.collectionView insertItemsAtIndexPaths:@[newIndexPath]
                                                   onPage:pageIndex
                                                 animated:YES];
             break;
         case TCCollectionsChangeUpdate:
-            if ([indexPath isEqual:newIndexPath] || newIndexPath == nil) {
-                [self.collectionView reloadItemsAtIndexPaths:[NSArray arrayWithObject:indexPath]
+            if (indexPath && newIndexPath && ![indexPath isEqual:newIndexPath]) {
+                [self.collectionView deleteItemsAtIndexPaths:@[indexPath]
+                                                      onPage:pageIndex
+                                                    animated:YES];
+                [self.collectionView insertItemsAtIndexPaths:@[newIndexPath]
                                                       onPage:pageIndex
                                                     animated:YES];
             }
-            else if(indexPath && newIndexPath) {
-                [self.collectionView deleteItemsAtIndexPaths:[NSArray arrayWithObject:indexPath]
-                                                      onPage:pageIndex
-                                                    animated:YES];
-                [self.collectionView insertItemsAtIndexPaths:[NSArray arrayWithObject:newIndexPath]
+            else if(indexPath) {
+                [self.collectionView reloadItemsAtIndexPaths:@[indexPath]
                                                       onPage:pageIndex
                                                     animated:YES];
             }

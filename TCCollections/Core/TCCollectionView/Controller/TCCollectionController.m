@@ -153,28 +153,28 @@
 - (void)model:(id<TCCollectionViewModel>)model didChangeObject:(id)anObject atIndexPath:(NSIndexPath *)indexPath forChangeType:(NSUInteger)type newIndexPath:(NSIndexPath *)newIndexPath {
     switch(type) {
         case TCCollectionsChangeInsert:
-            [self.collectionView insertItemsAtIndexPaths:[NSArray arrayWithObject:newIndexPath]
+            [self.collectionView insertItemsAtIndexPaths:@[newIndexPath]
                                                 animated:YES];
             break;
         case TCCollectionsChangeDelete:
-            [self.collectionView deleteItemsAtIndexPaths:[NSArray arrayWithObject:indexPath]
+            [self.collectionView deleteItemsAtIndexPaths:@[indexPath]
                                                 animated:YES];
             break;
         case TCCollectionsChangeMove:
-            [self.collectionView deleteItemsAtIndexPaths:[NSArray arrayWithObject:indexPath]
+            [self.collectionView deleteItemsAtIndexPaths:@[indexPath]
                                                 animated:YES];
-            [self.collectionView insertItemsAtIndexPaths:[NSArray arrayWithObject:newIndexPath]
+            [self.collectionView insertItemsAtIndexPaths:@[newIndexPath]
                                                 animated:YES];
             break;
         case TCCollectionsChangeUpdate:
-            if ([indexPath isEqual:newIndexPath] || newIndexPath == nil) {
-                [self.collectionView reloadItemsAtIndexPaths:[NSArray arrayWithObject:indexPath]
+            if (indexPath && newIndexPath && ![indexPath isEqual:newIndexPath]) {
+                [self.collectionView deleteItemsAtIndexPaths:@[indexPath]
+                                                    animated:YES];
+                [self.collectionView insertItemsAtIndexPaths:@[newIndexPath]
                                                     animated:YES];
             }
-            else if(indexPath && newIndexPath) {
-                [self.collectionView deleteItemsAtIndexPaths:[NSArray arrayWithObject:indexPath]
-                                                    animated:YES];
-                [self.collectionView insertItemsAtIndexPaths:[NSArray arrayWithObject:newIndexPath]
+            else if(indexPath) {
+                [self.collectionView reloadItemsAtIndexPaths:@[indexPath]
                                                     animated:YES];
             }
             break;

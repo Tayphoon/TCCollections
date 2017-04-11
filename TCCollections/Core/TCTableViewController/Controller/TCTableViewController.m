@@ -145,31 +145,31 @@
 - (void)model:(id<TCTableViewModel>)model didChangeObject:(id)anObject atIndexPath:(NSIndexPath *)indexPath forChangeType:(NSUInteger)type newIndexPath:(NSIndexPath *)newIndexPath {
     switch(type) {
         case TCCollectionsChangeInsert:
-            [self.tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:newIndexPath]
+            [self.tableView insertRowsAtIndexPaths:@[newIndexPath]
                                   withRowAnimation:UITableViewRowAnimationAutomatic];
             break;
         case TCCollectionsChangeDelete:
-            [self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath]
+            [self.tableView deleteRowsAtIndexPaths:@[indexPath]
                                   withRowAnimation:UITableViewRowAnimationRight];
             break;
         case TCCollectionsChangeMove:
             if (![indexPath isEqual:newIndexPath]) {
-                [self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath]
+                [self.tableView deleteRowsAtIndexPaths:@[indexPath]
                                       withRowAnimation:UITableViewRowAnimationAutomatic];
-                [self.tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:newIndexPath]
+                [self.tableView insertRowsAtIndexPaths:@[newIndexPath]
                                       withRowAnimation:UITableViewRowAnimationAutomatic];
             }
             break;
         case TCCollectionsChangeUpdate:
-            if ([indexPath isEqual:newIndexPath] || newIndexPath == nil) {
-                [self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:indexPath]
-                                      withRowAnimation:UITableViewRowAnimationNone];
+            if(indexPath && newIndexPath && ![indexPath isEqual:newIndexPath]) {
+                [self.tableView deleteRowsAtIndexPaths:@[indexPath]
+                                      withRowAnimation:UITableViewRowAnimationAutomatic];
+                [self.tableView insertRowsAtIndexPaths:@[newIndexPath]
+                                      withRowAnimation:UITableViewRowAnimationAutomatic];
             }
-            else if(indexPath && newIndexPath) {
-                [self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath]
-                                      withRowAnimation:UITableViewRowAnimationAutomatic];
-                [self.tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:newIndexPath]
-                                      withRowAnimation:UITableViewRowAnimationAutomatic];
+            else if(indexPath) {
+                [self.tableView reloadRowsAtIndexPaths:@[indexPath]
+                                      withRowAnimation:UITableViewRowAnimationNone];
             }
             break;
     }
