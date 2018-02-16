@@ -6,3 +6,5 @@ branches:
   only:
   - master
   - development
+before_install:
+- pod install
