@@ -6,8 +6,6 @@
 //  Copyright (c) 2014 Tayphoon. All rights reserved.
 //
 
-#import <OALayoutAnchor/OALayoutAnchor.h>
-
 #import "TCTableViewController.h"
 #import "TCCollectionsConstants.h"
 #import "TCTableViewCell.h"
@@ -26,14 +24,6 @@
 
 @implementation TCTableViewController
 
-- (id)init {
-    self = [super init];
-    if (self) {
-        
-    }
-    return self;
-}
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -47,6 +37,15 @@
         _tableView.backgroundColor = [UIColor clearColor];
         _tableView.translatesAutoresizingMaskIntoConstraints = NO;
         
+        //Disable estimated heights by default to fix layout issues for iOS 11
+        _tableView.estimatedRowHeight = 0;
+        _tableView.estimatedSectionHeaderHeight = 0;
+        _tableView.estimatedSectionFooterHeight = 0;
+        
+        if([_tableView respondsToSelector:@selector(setCellLayoutMarginsFollowReadableWidth:)]) {
+            _tableView.cellLayoutMarginsFollowReadableWidth = NO;
+        }
+      
         [self.view addSubview:_tableView];
         [self configureTableLayoutConstraints];
     }
@@ -86,20 +85,16 @@
 
 #pragma mark - UITableView DataSource
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+- (NSInteger)numberOfSectionsInTableView:(UITableView*)tableView {
     return [self.tableViewModel numberOfSections];
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+- (NSInteger)tableView:(UITableView*)tableView numberOfRowsInSection:(NSInteger)section {
     return [self.tableViewModel numberOfItemsInSection:section];
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+- (UITableViewCell*)tableView:(UITableView*)tableView cellForRowAtIndexPath:(NSIndexPath*)indexPath {
     UITableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:[self.tableViewModel reuseIdentifierForIndexPath:indexPath]];
-    
-    if (!cell) {
-        cell = [self.tableViewModel createCellForIndexPath:indexPath];
-    }
     
     if ([cell conformsToProtocol:@protocol(TCTableViewCell)]) {
         UITableViewCell<TCTableViewCell> * tableCell = (UITableViewCell<TCTableViewCell>*)cell;
@@ -111,11 +106,37 @@
 
 #pragma mark - UITableView Delegate
 
-- (NSString*)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+- (CGFloat)tableView:(UITableView*)tableView heightForHeaderInSection:(NSInteger)section {
+    if ([self.tableViewModel respondsToSelector:@selector(heightForHeaderInSection:constrainedToSize:)]) {
+        return [self.tableViewModel heightForHeaderInSection:section constrainedToSize:tableView.bounds.size];
+    }
+    
+    return 0;
+}
+
+- (UIView*)tableView:(UITableView*)tableView viewForHeaderInSection:(NSInteger)section {
+    UIView * sectionHeader;
+    if ([self.tableViewModel respondsToSelector:@selector(reuseIdentifierForHeaderInSection:)]) {
+        NSString * reuseIdentifier = [self.tableViewModel reuseIdentifierForHeaderInSection:section];
+        sectionHeader = [tableView dequeueReusableHeaderFooterViewWithIdentifier:reuseIdentifier];
+    }
+    return sectionHeader;
+}
+
+- (UIView*)tableView:(UITableView*)tableView viewForFooterInSection:(NSInteger)section {
+    UIView * sectionFooter;
+    if ([self.tableViewModel respondsToSelector:@selector(reuseIdentifierForFooterInSection:)]) {
+        NSString * reuseIdentifier = [self.tableViewModel reuseIdentifierForFooterInSection:section];
+        sectionFooter = [tableView dequeueReusableHeaderFooterViewWithIdentifier:reuseIdentifier];
+    }
+    return sectionFooter;
+}
+
+- (NSString*)tableView:(UITableView*)tableView titleForHeaderInSection:(NSInteger)section {
     return [self.tableViewModel titleForHeaderInSection:section];
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+- (CGFloat)tableView:(UITableView*)tableView heightForRowAtIndexPath:(NSIndexPath*)indexPath {
     return [self.tableViewModel heightForItemAtIndexPath:indexPath constrainedToSize:tableView.frame.size];
 }
 

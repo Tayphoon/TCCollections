@@ -1,6 +1,6 @@
 //
 //  TCSelectionController.m
-//  Tayphoon
+//  TCCollections
 //
 //  Created by Tayphoon on 24.06.15.
 //  Copyright (c) 2015 Tayphoon. All rights reserved.
@@ -16,13 +16,6 @@
 
 @dynamic model;
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-    }
-    return self;
-}
-
 - (BOOL)isLeftMenuEnabled {
     return NO;
 }
@@ -36,7 +29,7 @@
 
 #pragma mark - UITableView DataSource
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+- (UITableViewCell*)tableView:(UITableView*)tableView cellForRowAtIndexPath:(NSIndexPath*)indexPath {
     UITableViewCell * cell = [super tableView:tableView cellForRowAtIndexPath:indexPath];
     
     BOOL isCellSelected = [self.model isItemSelectedAtIndexPath:indexPath];
@@ -47,7 +40,7 @@
 
 #pragma mark - UITableView Delegate
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+- (void)tableView:(UITableView*)tableView didSelectRowAtIndexPath:(NSIndexPath*)indexPath {
     NSIndexPath * selectedIndexPath = [self.model selectedIndexPathForSection:indexPath.section];
     if (self.model.allowsMultipleSelection) {
         BOOL isItemSelected = [self.model isItemSelectedAtIndexPath:indexPath];
@@ -77,7 +70,7 @@
     }
 }
 
-- (NSIndexPath *)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+- (NSIndexPath*)tableView:(UITableView*)tableView willSelectRowAtIndexPath:(NSIndexPath*)indexPath {
     BOOL selectionDisabled = (!self.model.allowsDeselection && [self.model isItemSelectedAtIndexPath:indexPath]);
     return (!selectionDisabled) ? indexPath : nil;
 }

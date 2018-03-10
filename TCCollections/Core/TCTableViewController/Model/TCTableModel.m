@@ -31,12 +31,7 @@
     return nil;
 }
 
-- (UIView*)createViewForHeaderInSection:(NSUInteger)section {
-    Class headerClass = [self classForHeaderInSection:section];
-    return (headerClass) ? [[headerClass alloc] init] : nil;
-}
-
-- (NSString *)titleForHeaderInSection:(NSInteger)section {
+- (NSString*)titleForHeaderInSection:(NSInteger)section {
     return nil;
 }
 
@@ -44,7 +39,7 @@
     return [self.items count];
 }
 
-- (NSString*)reuseIdentifierForIndexPath:(NSIndexPath *)indexPath {
+- (NSString*)reuseIdentifierForIndexPath:(NSIndexPath*)indexPath {
     return nil;
 }
 
@@ -52,13 +47,7 @@
     return nil;
 }
 
-- (UITableViewCell*)createCellForIndexPath:(NSIndexPath *)indexPath {
-    Class cellClass = [self cellClassForIndexPath:indexPath];
-    return [[cellClass alloc] initWithStyle:UITableViewCellStyleDefault
-                            reuseIdentifier:[self reuseIdentifierForIndexPath:indexPath]];
-}
-
-- (CGFloat)heightForItemAtIndexPath:(NSIndexPath *)indexPath constrainedToSize:(CGSize)size {
+- (CGFloat)heightForItemAtIndexPath:(NSIndexPath*)indexPath constrainedToSize:(CGSize)size {
     Class cellClass = [self cellClassForIndexPath:indexPath];
     if (cellClass && [cellClass respondsToSelector:@selector(heightForItem:constrainedToSize:)]) {
         return [cellClass heightForItem:[self itemAtIndexPath:indexPath] constrainedToSize:size];
@@ -67,7 +56,7 @@
     return 0.0f;
 }
 
-- (id)itemAtIndexPath:(NSIndexPath *)indexPath {
+- (id)itemAtIndexPath:(NSIndexPath*)indexPath {
     if(indexPath.section < [self numberOfSections] &&
        indexPath.row < [self numberOfItemsInSection:indexPath.section]) {
         return [self.items objectAtIndex:indexPath.row];
@@ -75,7 +64,7 @@
     return nil;
 }
 
-- (NSIndexPath *)indexPathOfObject:(id)object {
+- (NSIndexPath*)indexPathOfObject:(id)object {
     NSInteger index = [self.items indexOfObject:object];
     if (index != NSNotFound) {
         return [NSIndexPath indexPathForRow:index inSection:self.section];

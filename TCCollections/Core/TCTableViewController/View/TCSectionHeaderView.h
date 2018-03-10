@@ -1,6 +1,6 @@
 //
 //  TCSectionHeaderView.h
-//  Tayphoon
+//  TCCollections
 //
 //  Created by Tayphoon on 26/03/16.
 //  Copyright © 2016 Tayphoon. All rights reserved.

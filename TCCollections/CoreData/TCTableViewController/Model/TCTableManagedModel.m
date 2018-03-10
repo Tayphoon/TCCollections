@@ -1,6 +1,6 @@
 //
 //  TCTableManagedModel.m
-//  Tayphoon
+//  TCCollections
 //
 //  Created by Tayphoon on 14.04.15.
 //  Copyright (c) 2015 Tayphoon. All rights reserved.
@@ -47,14 +47,6 @@
     return nil;
 }
 
-- (UIView*)createViewForHeaderInSection:(NSUInteger)section {
-    Class headerClass = [self classForHeaderInSection:section];
-    if (headerClass) {
-        return [[headerClass alloc] init];
-    }
-    return nil;
-}
-
 - (id)itemForSection:(NSUInteger)section {
     return nil;
 }
@@ -70,12 +62,6 @@
 
 - (NSString*)reuseIdentifierForIndexPath:(NSIndexPath*)indexPath {
     return nil;
-}
-
-- (UITableViewCell*)createCellForIndexPath:(NSIndexPath*)indexPath {
-    Class cellClass = [self cellClassForIndexPath:indexPath];
-    return [[cellClass alloc] initWithStyle:UITableViewCellStyleDefault
-                            reuseIdentifier:[self reuseIdentifierForIndexPath:indexPath]];
 }
 
 - (CGFloat)heightForItemAtIndexPath:(NSIndexPath*)indexPath constrainedToSize:(CGSize)size {

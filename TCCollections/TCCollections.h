@@ -1,6 +1,6 @@
 //
 //  TCCollections.h
-//  Pods
+//  TCCollections
 //
 //  Created by Tayphoon on 25.03.16.
 //

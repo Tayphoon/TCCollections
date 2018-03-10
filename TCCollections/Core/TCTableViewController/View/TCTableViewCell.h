@@ -1,6 +1,6 @@
 //
 //  TCTableViewCell.h
-//  Tayphoon
+//  TCCollections
 //
 //  Created by Tayphoon on 16.10.15.
 //  Copyright © 2015 Tayphoon. All rights reserved.
