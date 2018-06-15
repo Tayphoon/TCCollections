@@ -108,7 +108,7 @@
 		7340E4822053DDCC0016197B /* TCTableSectionObject.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TCTableSectionObject.h; sourceTree = "<group>"; };
 		7340E4832053DE2A0016197B /* TCObjectsTableViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TCObjectsTableViewModel.h; sourceTree = "<group>"; };
 		7340E4842053DE2A0016197B /* TCObjectsTableViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TCObjectsTableViewModel.m; sourceTree = "<group>"; };
-		7340E48A2053E3330016197B /* Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		7340E48A2053E3330016197B /* TCCollectionsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TCCollectionsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		7340E48C2053E3330016197B /* Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Tests.m; sourceTree = "<group>"; };
 		7340E48E2053E3330016197B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7394B3881D4A312C001309AE /* TCTableViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCTableViewModel.h; sourceTree = "<group>"; };
@@ -169,7 +169,7 @@
 			isa = PBXGroup;
 			children = (
 				733757231CA5888000FF4F03 /* libTCCollections.a */,
-				7340E48A2053E3330016197B /* Tests.xctest */,
+				7340E48A2053E3330016197B /* TCCollectionsTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -477,9 +477,9 @@
 			productReference = 733757231CA5888000FF4F03 /* libTCCollections.a */;
 			productType = "com.apple.product-type.library.static";
 		};
-		7340E4892053E3330016197B /* Tests */ = {
+		7340E4892053E3330016197B /* TCCollectionsTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 7340E4942053E3330016197B /* Build configuration list for PBXNativeTarget "Tests" */;
+			buildConfigurationList = 7340E4942053E3330016197B /* Build configuration list for PBXNativeTarget "TCCollectionsTests" */;
 			buildPhases = (
 				7340E4862053E3330016197B /* Sources */,
 				7340E4872053E3330016197B /* Frameworks */,
@@ -490,9 +490,9 @@
 			dependencies = (
 				7340E4912053E3330016197B /* PBXTargetDependency */,
 			);
-			name = Tests;
+			name = TCCollectionsTests;
 			productName = Tests;
-			productReference = 7340E48A2053E3330016197B /* Tests.xctest */;
+			productReference = 7340E48A2053E3330016197B /* TCCollectionsTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -526,7 +526,7 @@
 			projectRoot = "";
 			targets = (
 				733757221CA5888000FF4F03 /* TCCollections */,
-				7340E4892053E3330016197B /* Tests */,
+				7340E4892053E3330016197B /* TCCollectionsTests */,
 			);
 		};
 /* End PBXProject section */
@@ -805,7 +805,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		7340E4942053E3330016197B /* Build configuration list for PBXNativeTarget "Tests" */ = {
+		7340E4942053E3330016197B /* Build configuration list for PBXNativeTarget "TCCollectionsTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				7340E4922053E3330016197B /* Debug */,
