@@ -1,10 +1,13 @@
 language: objective-c
 osx_image: xcode9.2
-xcode_project: TCCollections.xcodeproj # path to your xcodeproj folder
-xcode_scheme: TCCollections
+
+before_install:
+- pod install
+
 branches:
   only:
   - master
   - development
-before_install:
-- pod install
+  
+script:
+- xcodebuild clean build test -project TCCollections.xcodeproj -scheme TCCollections -destination 'platform=iOS Simulator,name=iPhone 6,OS=9.3'
