@@ -1,18 +1,18 @@
 //
-//  TCCollectionsTests.m
-//  TCCollections
+//  Tests.m
+//  Tests
 //
-//  Created by Tayphoon on 15/06/2018.
+//  Created by Tayphoon on 10/03/2018.
 //  Copyright © 2018 Tayphoon. All rights reserved.
 //
 
 #import <XCTest/XCTest.h>
 
-@interface TCCollectionsTests : XCTestCase
+@interface Tests : XCTestCase
 
 @end
 
-@implementation TCCollectionsTests
+@implementation Tests
 
 - (void)setUp {
     [super setUp];

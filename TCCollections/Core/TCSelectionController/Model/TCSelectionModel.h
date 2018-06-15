@@ -17,7 +17,7 @@
 @property (nonatomic, assign) BOOL allowsMultipleSelection;
 @property (nonatomic, assign) BOOL allowsDeselection;
 
-- (BOOL)isItemSelectedAtIndexPath:(NSIndexPath *)indexPath;
-- (void)makeItemAtIndexPath:(NSIndexPath *)indexPath selected:(BOOL)selected;
+- (BOOL)isItemSelectedAtIndexPath:(NSIndexPath*)indexPath;
+- (void)makeItemAtIndexPath:(NSIndexPath*)indexPath selected:(BOOL)selected;
 
 @end

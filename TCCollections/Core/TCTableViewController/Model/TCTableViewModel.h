@@ -38,7 +38,11 @@
 
 - (Class)classForHeaderInSection:(NSUInteger)section;
 
-- (UIView*)createViewForHeaderInSection:(NSUInteger)section;
+- (Class)classForFooterInSection:(NSUInteger)section;
+
+- (NSString*)reuseIdentifierForHeaderInSection:(NSUInteger)section;
+
+- (NSString*)reuseIdentifierForFooterInSection:(NSUInteger)section;
 
 - (id)itemForSection:(NSUInteger)section;
 
@@ -51,8 +55,6 @@
 - (NSUInteger)numberOfItemsInSection:(NSInteger)section;
 
 - (NSString*)reuseIdentifierForIndexPath:(NSIndexPath*)indexPath;
-
-- (UITableViewCell*)createCellForIndexPath:(NSIndexPath*)indexPath;
 
 - (CGFloat)heightForItemAtIndexPath:(NSIndexPath*)indexPath constrainedToSize:(CGSize)size;
 
