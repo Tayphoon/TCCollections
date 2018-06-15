@@ -1,6 +1,6 @@
 	//
 //  TCTitledCollectionView.m
-//  Blueprint
+//  TCCollections
 //
 //  Created by Tayphoon on 26.11.15.
 //  Copyright © 2015 Tayphoon. All rights reserved.

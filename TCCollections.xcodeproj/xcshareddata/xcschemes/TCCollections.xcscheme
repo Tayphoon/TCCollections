@@ -28,7 +28,26 @@
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "73A931FF20D3AB0C00E7D675"
+               BuildableName = "TCCollectionsTests.xctest"
+               BlueprintName = "TCCollectionsTests"
+               ReferencedContainer = "container:TCCollections.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "733757221CA5888000FF4F03"
+            BuildableName = "libTCCollections.a"
+            BlueprintName = "TCCollections"
+            ReferencedContainer = "container:TCCollections.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
       <AdditionalOptions>
       </AdditionalOptions>
    </TestAction>

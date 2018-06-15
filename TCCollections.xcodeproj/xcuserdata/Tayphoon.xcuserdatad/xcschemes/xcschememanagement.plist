@@ -4,7 +4,7 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
-		<key>TCCollections.xcscheme</key>
+		<key>TCCollections.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
 			<integer>0</integer>
@@ -13,6 +13,11 @@
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
 		<key>733757221CA5888000FF4F03</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>73A931FF20D3AB0C00E7D675</key>
 		<dict>
 			<key>primary</key>
 			<true/>

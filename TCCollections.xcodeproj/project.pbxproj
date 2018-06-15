@@ -24,9 +24,21 @@
 		733757781CA589E200FF4F03 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 733757771CA589E200FF4F03 /* Foundation.framework */; };
 		7337577A1CA589EF00FF4F03 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 733757791CA589EF00FF4F03 /* UIKit.framework */; };
 		73A760571D5A47600038049A /* TCTableController.m in Sources */ = {isa = PBXBuildFile; fileRef = 73A760561D5A47600038049A /* TCTableController.m */; };
+		73A9320320D3AB0C00E7D675 /* TCCollectionsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 73A9320220D3AB0C00E7D675 /* TCCollectionsTests.m */; };
+		73A9320520D3AB0C00E7D675 /* libTCCollections.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 733757231CA5888000FF4F03 /* libTCCollections.a */; };
 		73D7881A1D5A5E5400627624 /* TCTableViewController+TableKeyboardLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 73D788191D5A5E5400627624 /* TCTableViewController+TableKeyboardLayout.m */; };
 		D6FD007B19069E3631FB0922 /* libPods-TCCollections.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0FEF50551282EF6BFC7BA72B /* libPods-TCCollections.a */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		73A9320620D3AB0C00E7D675 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 7337571B1CA5888000FF4F03 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 733757221CA5888000FF4F03;
+			remoteInfo = TCCollections;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
 		733757211CA5888000FF4F03 /* CopyFiles */ = {
@@ -91,6 +103,9 @@
 		7394B3891D4A336B001309AE /* TCCollectionViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCCollectionViewModel.h; sourceTree = "<group>"; };
 		73A760551D5A47600038049A /* TCTableController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCTableController.h; sourceTree = "<group>"; };
 		73A760561D5A47600038049A /* TCTableController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCTableController.m; sourceTree = "<group>"; };
+		73A9320020D3AB0C00E7D675 /* TCCollectionsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TCCollectionsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		73A9320220D3AB0C00E7D675 /* TCCollectionsTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TCCollectionsTests.m; sourceTree = "<group>"; };
+		73A9320420D3AB0C00E7D675 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		73D788181D5A5E5400627624 /* TCTableViewController+TableKeyboardLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "TCTableViewController+TableKeyboardLayout.h"; sourceTree = "<group>"; };
 		73D788191D5A5E5400627624 /* TCTableViewController+TableKeyboardLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "TCTableViewController+TableKeyboardLayout.m"; sourceTree = "<group>"; };
 		73EA9A081CA7BFF8002C1D6A /* TCSectionHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCSectionHeaderView.h; sourceTree = "<group>"; };
@@ -106,6 +121,14 @@
 				7337577A1CA589EF00FF4F03 /* UIKit.framework in Frameworks */,
 				733757781CA589E200FF4F03 /* Foundation.framework in Frameworks */,
 				D6FD007B19069E3631FB0922 /* libPods-TCCollections.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		73A931FD20D3AB0C00E7D675 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				73A9320520D3AB0C00E7D675 /* libTCCollections.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -126,6 +149,7 @@
 			children = (
 				7337577C1CA58CDE00FF4F03 /* Podspec Metadata */,
 				733757251CA5888000FF4F03 /* TCCollections */,
+				73A9320120D3AB0C00E7D675 /* TCCollectionsTests */,
 				7337577B1CA589F900FF4F03 /* Frameworks */,
 				733757241CA5888000FF4F03 /* Products */,
 				5E8ABE0C4022D65EFBF3616B /* Pods */,
@@ -136,6 +160,7 @@
 			isa = PBXGroup;
 			children = (
 				733757231CA5888000FF4F03 /* libTCCollections.a */,
+				73A9320020D3AB0C00E7D675 /* TCCollectionsTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -373,6 +398,15 @@
 			name = "Podspec Metadata";
 			sourceTree = "<group>";
 		};
+		73A9320120D3AB0C00E7D675 /* TCCollectionsTests */ = {
+			isa = PBXGroup;
+			children = (
+				73A9320220D3AB0C00E7D675 /* TCCollectionsTests.m */,
+				73A9320420D3AB0C00E7D675 /* Info.plist */,
+			);
+			path = TCCollectionsTests;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -395,6 +429,24 @@
 			productReference = 733757231CA5888000FF4F03 /* libTCCollections.a */;
 			productType = "com.apple.product-type.library.static";
 		};
+		73A931FF20D3AB0C00E7D675 /* TCCollectionsTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 73A9320A20D3AB0C00E7D675 /* Build configuration list for PBXNativeTarget "TCCollectionsTests" */;
+			buildPhases = (
+				73A931FC20D3AB0C00E7D675 /* Sources */,
+				73A931FD20D3AB0C00E7D675 /* Frameworks */,
+				73A931FE20D3AB0C00E7D675 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				73A9320720D3AB0C00E7D675 /* PBXTargetDependency */,
+			);
+			name = TCCollectionsTests;
+			productName = TCCollectionsTests;
+			productReference = 73A9320020D3AB0C00E7D675 /* TCCollectionsTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -406,6 +458,10 @@
 				TargetAttributes = {
 					733757221CA5888000FF4F03 = {
 						CreatedOnToolsVersion = 7.3;
+					};
+					73A931FF20D3AB0C00E7D675 = {
+						CreatedOnToolsVersion = 10.0;
+						ProvisioningStyle = Automatic;
 					};
 				};
 			};
@@ -422,9 +478,20 @@
 			projectRoot = "";
 			targets = (
 				733757221CA5888000FF4F03 /* TCCollections */,
+				73A931FF20D3AB0C00E7D675 /* TCCollectionsTests */,
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		73A931FE20D3AB0C00E7D675 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
 		1612D04CFC7238A83B1A6CA6 /* 📦 Check Pods Manifest.lock */ = {
@@ -482,7 +549,23 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		73A931FC20D3AB0C00E7D675 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				73A9320320D3AB0C00E7D675 /* TCCollectionsTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		73A9320720D3AB0C00E7D675 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 733757221CA5888000FF4F03 /* TCCollections */;
+			targetProxy = 73A9320620D3AB0C00E7D675 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		7337572A1CA5888000FF4F03 /* Debug */ = {
@@ -597,6 +680,63 @@
 			};
 			name = Release;
 		};
+		73A9320820D3AB0C00E7D675 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = TCCollectionsTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				PRODUCT_BUNDLE_IDENTIFIER = ru.tayphoon.TCCollectionsTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		73A9320920D3AB0C00E7D675 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = TCCollectionsTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = ru.tayphoon.TCCollectionsTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -614,6 +754,15 @@
 			buildConfigurations = (
 				7337572D1CA5888000FF4F03 /* Debug */,
 				7337572E1CA5888000FF4F03 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		73A9320A20D3AB0C00E7D675 /* Build configuration list for PBXNativeTarget "TCCollectionsTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				73A9320820D3AB0C00E7D675 /* Debug */,
+				73A9320920D3AB0C00E7D675 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

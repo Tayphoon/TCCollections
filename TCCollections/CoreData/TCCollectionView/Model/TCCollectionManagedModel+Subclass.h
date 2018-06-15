@@ -1,9 +1,9 @@
 //
 //  TCCollectionManagedModel+Subclass.h
-//  Pods
+//  TCCollections
 //
 //  Created by Tayphoon on 25.03.16.
-//
+//  Copyright (c) 2015 Tayphoon. All rights reserved.
 //
 
 #import "TCCollectionManagedModel.h"

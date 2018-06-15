@@ -1,6 +1,6 @@
 //
 //  TCTableManagedModel.m
-//  Tayphoon
+//  TCCollections
 //
 //  Created by Tayphoon on 14.04.15.
 //  Copyright (c) 2015 Tayphoon. All rights reserved.
